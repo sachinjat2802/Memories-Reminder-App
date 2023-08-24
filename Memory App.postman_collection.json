@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "b8c8e8c5-f4ba-450b-8ada-5c1f8d4acfb3",
+		"name": "Memory App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17195439"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"smnavin65@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"otp\": \"7955\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create Memory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5MDU2MTksImV4cCI6MTY5MjkwOTIxOX0.45ZBvGWTLlupCk1DzUqVmjEc4AIvVg6T-29nCjK2e5Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/navindurai/Downloads/Screenshot from 2023-07-27 12-52-11.png"
+						},
+						{
+							"key": "tittle",
+							"value": "test1",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "description kjndcjn",
+							"type": "text"
+						},
+						{
+							"key": "tags",
+							"value": "mnmn,navin,hi,hello",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "smnavin65@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "dateOfEvent",
+							"value": "2023-08-24T19:33:39.042+00:00",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/memory/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"memory",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all events of mine",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5MDU2MTksImV4cCI6MTY5MjkwOTIxOX0.45ZBvGWTLlupCk1DzUqVmjEc4AIvVg6T-29nCjK2e5Q",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/memory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"memory"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

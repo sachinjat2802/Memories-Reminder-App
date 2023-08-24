@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 .Ds_Store
+package-lock.json
