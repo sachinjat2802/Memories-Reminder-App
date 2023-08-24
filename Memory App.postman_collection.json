@@ -149,6 +149,58 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get A Memory",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5MDU2MTksImV4cCI6MTY5MjkwOTIxOX0.45ZBvGWTLlupCk1DzUqVmjEc4AIvVg6T-29nCjK2e5Q",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/memory/64e7b5023b5a83d81bc6dbba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"memory",
+						"64e7b5023b5a83d81bc6dbba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Memory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5MDU2MTksImV4cCI6MTY5MjkwOTIxOX0.45ZBvGWTLlupCk1DzUqVmjEc4AIvVg6T-29nCjK2e5Q",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/memory/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"memory",
+						"update"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
