@@ -1,5 +1,6 @@
 const Memory = require("./memory-model");
 const { validationService } = require("../../services");
+const { searchAggregations, sortingAggregations } = require("./aggregations");
 
 const createMemory = async (req, res) => {
     const { email } = req.user;
@@ -86,6 +87,34 @@ const getAllMemories = async (req, res) => {
     });
 }
 
+const getAllMemoriesSorted = async (req, res) => {
+    const { email } = req.user;
+    const { sortBy } = req.params;
+    var memories;
+    if(sortBy == "created")
+        memories = await sortingAggregations.sortByCreatedDate(email);
+    else if(sortBy == "event")
+        memories = await sortingAggregations.sortByEventDate(email);
+    else
+        memories = await sortingAggregations.sortByLastSentDate(email);
+    return res.status(200).json({
+        message: "Here are your memories...",
+        status: 1,
+        data: memories,
+    });
+}
+
+const searchMemory = async (req, res) => {
+    const { email } = req.user;
+    const { searchText } = req.params;
+    const data = await searchAggregations(email, searchText);
+    return res.status(200).json({
+        message: "Here are your memories...",
+        status: 1,
+        data,
+    });
+}
+
 const getAMemory = async (req, res) => {
     const { email } = req.user;
     const { id } = req.params;
@@ -101,5 +130,7 @@ module.exports = {
     createMemory,
     updateMemory,
     getAllMemories,
+    getAllMemoriesSorted,
+    searchMemory,
     getAMemory,
 }

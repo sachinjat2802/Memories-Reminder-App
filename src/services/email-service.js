@@ -1,34 +1,66 @@
-const axios = require("axios");
-const MAIL_URL = "http://localhost:8000/mail/send";
+const { createTransport } = require("nodemailer");
 
 
-const generateOTO = () => {
+const transporter = createTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    secureConnection: false,
+    auth: {
+        user: 'dummypurposepvt@gmail.com',
+        pass: 'zwegashxkjmcjwrp',
+    },
+});
+
+const generateOTP = () => {
     const randomNumber = Math.floor(Math.random() * 10000);
     const fourDigitNumber = randomNumber.toString().padStart(4, '0');
     return fourDigitNumber;
 }
 
-const sendMail = async (to, subject, body) => {
-    const mailBody = {
-        reciptant: to,
-        subject,
-        body,
-    };
-    const { status } = await axios.post(MAIL_URL, mailBody);
-    if (status == 200)
-        console.info(`mail sent to user ${to}`);
+const sendMail = (to, subject, body) => {
+    try {
+        const mailBody = {
+            from: 'dummypurposepvt@gmail.com',
+            to,
+            subject,
+            text: body,
+        };
+        transporter.sendMail(mailBody, (error, info) => {
+            if (error) {
+                console.info(`Error sending mail to user ${to}`);
+                console.log(error);
+            } else {
+                console.info(`mail sent to user ${to}`);
+            }
+        });
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 const sendOTP = async (to) => {
-    const otp = generateOTO();
-    const mailBody = {
-        reciptant: to,
-        subject: "OTP for Memory App",
-        body: `Hi this is your OTP ${otp} to login to memory app.`,
-    };
-    const { status } = await axios.post(MAIL_URL, mailBody);
-    if (status == 200)
-        console.info(`OTP sent to user ${to}`);
+    const otp = generateOTP();
+    try {
+        const mailBody = {
+            from: 'dummypurposepvt@gmail.com',
+            to,
+            subject: "Your OTP",
+            text: `Your OTP to login Memory App is: ${otp}`,
+        };
+        // transporter.sendMail(mailBody, (error, info) => {
+        //     if (error) {
+        //         console.info(`Error sending mail to user ${to}`);
+        //         console.log(error);
+        //     } else {
+        //         console.info(`mail sent to user ${to}`);
+        //     }
+        // });
+        await transporter.sendMail(mailBody);
+    } catch (e) {
+        console.log(e);
+    }
     return otp;
 };
 

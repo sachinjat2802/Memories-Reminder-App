@@ -5,15 +5,15 @@ const Schema = mongoose.Schema;
 const memory = new Schema({
     belongs_to: {
         type: String,
-        ref: "users",
+        ref: "user",
     },
     tittle: {
         type: String,
-        required: true
+        required: true,
     },
     description: {
         type: String,
-        required: true
+        required: true,
     },
     tags: {
         type: [String],
@@ -28,10 +28,13 @@ const memory = new Schema({
         type: Date,
         required: true,
     },
+    last_notification_sent: {
+        type: Date,
+    },
     isDeleted: {
         type: Boolean,
-        default: false
-    }
+        default: false,
+    },
 }, {
     id: false,
     toObject: { virtuals: true, getters: true },

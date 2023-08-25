@@ -1,11 +1,12 @@
 const Memory = require("../memory-model");
 
-const search = async (searchString) => {
+const search = async (email, searchString) => {
     try {
         const regex = new RegExp(searchString, 'i');
         const data = await Memory.aggregate([
             {
                 $match: {
+                    belongs_to: email,
                     $or: [
                         {
                             tags: {
@@ -16,16 +17,12 @@ const search = async (searchString) => {
                         },
                         {
                             tittle: {
-                                $elemMatch: {
-                                    $regex: regex,
-                                }
+                                $regex: regex,
                             }
                         },
                         {
                             description: {
-                                $elemMatch: {
-                                    $regex: regex,
-                                }
+                                $regex: regex,
                             }
                         }
                     ]
