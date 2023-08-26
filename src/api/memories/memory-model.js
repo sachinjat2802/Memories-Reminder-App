@@ -17,7 +17,7 @@ const memory = new Schema({
     },
     tags: {
         type: [String],
-        required: true,
+        required: false,
     },
     image: {
         name: String,

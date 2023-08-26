@@ -1,4 +1,5 @@
 const { createTransport } = require("nodemailer");
+const { MAILID, MAIL_PASSWORD } = require("../config/index");
 
 
 const transporter = createTransport({
@@ -8,8 +9,8 @@ const transporter = createTransport({
     secure: true,
     secureConnection: false,
     auth: {
-        user: 'dummypurposepvt@gmail.com',
-        pass: 'zwegashxkjmcjwrp',
+        user: MAILID,
+        pass: MAIL_PASSWORD,
     },
 });
 
@@ -22,7 +23,7 @@ const generateOTP = () => {
 const sendMail = (to, subject, body) => {
     try {
         const mailBody = {
-            from: 'dummypurposepvt@gmail.com',
+            from: MAILID,
             to,
             subject,
             text: body,
@@ -44,7 +45,7 @@ const sendOTP = async (to) => {
     const otp = generateOTP();
     try {
         const mailBody = {
-            from: 'dummypurposepvt@gmail.com',
+            from: MAILID,
             to,
             subject: "Your OTP",
             text: `Your OTP to login Memory App is: ${otp}`,

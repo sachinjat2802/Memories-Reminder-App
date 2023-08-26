@@ -34,8 +34,9 @@ const createMemory = async (req, res) => {
 }
 
 const updateMemory = async (req, res) => {
-    const { email } = req.user;
-    const { id, tittle, description, tags = [], dateOfEvent } = req.body;
+    const { user, files, body } = req;
+    const { email } = user;
+    const { id, tittle, description, tags = [], dateOfEvent } = body;
     if (!id || !tittle || !description || !dateOfEvent)
         return res.status(400).json({
             message: "Enter id, tittle, description, dateOfEvent",
@@ -46,6 +47,14 @@ const updateMemory = async (req, res) => {
             message: "Enter an valid email address...",
             status: 0,
         });
+    var image;
+    if (files) {
+        image = {
+            name: files.file.name,
+            data: Buffer.from(files.file.data),
+            contentType: "image/jpeg",
+        }
+    };
     const { matchedCount } = await Memory.updateOne(
         {
             _id: id,
@@ -57,11 +66,7 @@ const updateMemory = async (req, res) => {
                 description,
                 tags: tags.split(","),
                 event_date: dateOfEvent,
-                image: {
-                    name: req.files.file.name,
-                    data: Buffer.from(req.files.file.data),
-                    contentType: "image/jpeg",
-                }
+                image,
             }
         }
     );
@@ -91,9 +96,9 @@ const getAllMemoriesSorted = async (req, res) => {
     const { email } = req.user;
     const { sortBy } = req.params;
     var memories;
-    if(sortBy == "created")
+    if (sortBy == "created")
         memories = await sortingAggregations.sortByCreatedDate(email);
-    else if(sortBy == "event")
+    else if (sortBy == "event")
         memories = await sortingAggregations.sortByEventDate(email);
     else
         memories = await sortingAggregations.sortByLastSentDate(email);
