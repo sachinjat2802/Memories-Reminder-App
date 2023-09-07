@@ -6,9 +6,26 @@ const user = new Schema({
         type: String,
         required: true
     },
+    name: {
+        type: String,
+        required: false
+    },
+    password: {
+        type: String,
+        required: false
+    },
     otp: {
         type: String,
-        required: true
+        required: false
+    },
+    dob: {
+        type: Date,
+        required: false
+    },
+    profilePicture: {
+        name: String,
+        data: Buffer,
+        contentType: String,
     },
     is_loggedin: {
         type: Boolean,

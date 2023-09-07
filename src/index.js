@@ -2,6 +2,7 @@ const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
 const expressFileUpload = require('express-fileupload');
+require("dotenv").config();
 
 const { PORT, DB_URL, mongooseConnect } = require("./config");
 const userRoute = require("./api/user");

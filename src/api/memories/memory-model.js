@@ -19,11 +19,11 @@ const memory = new Schema({
         type: [String],
         required: false,
     },
-    image: {
+    image: [{
         name: String,
         data: Buffer,
         contentType: String,
-    },
+    }],
     event_date: {
         type: Date,
         required: true,
