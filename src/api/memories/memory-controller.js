@@ -128,10 +128,17 @@ const getTagsSuggestion = async (req, res) => {
     const { email } = req.user;
     const { name } = req.params;
     const tags = await searchAggregations.getTags(email, name);
+    let suggestions = [];
+    tags.map(memories => {
+        memories["tags"].map(tag => {
+            if(tag.includes(name) && !suggestions.includes(tag))
+                suggestions.push(tag);
+        });
+    });
     return res.status(200).json({
         message: "Tags sugeestion.",
         status: 1,
-        data: tags,
+        data: suggestions,
     });
 }
 
