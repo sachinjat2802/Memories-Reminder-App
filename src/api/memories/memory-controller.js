@@ -3,8 +3,9 @@ const { validationService } = require("../../services");
 const { searchAggregations, sortingAggregations } = require("./aggregations");
 
 const createMemory = async (req, res) => {
-    const { email } = req.user;
-    const { tittle, description, tags = [], dateOfEvent } = req.body;
+    const { files, body, user } = req;
+    const { email } = user;
+    const { tittle, description, tags = [], dateOfEvent } = body;
     if (!tittle || !description || !dateOfEvent)
         return res.status(400).json({
             message: "Enter tittle, description, dateOfEvent",
@@ -15,13 +16,24 @@ const createMemory = async (req, res) => {
             message: "Enter an valid email address...",
             status: 0,
         });
-    let images = [];
-    for(const file of req.files["file"])
-        images.push({
-            name: file.name,
-            data: Buffer.from(file.data),
-            contentType: "image/jpeg",
-        });
+    var images = [];
+    if (files) {
+        const inCommingFile = files["file"];
+        const isArray = Array.isArray(inCommingFile);
+        if (isArray)
+            for (const file of inCommingFile)
+                images.push({
+                    name: file.name,
+                    data: Buffer.from(file.data),
+                    contentType: "image/jpeg",
+                });
+        else
+            images.push({
+                name: inCommingFile.name,
+                data: Buffer.from(inCommingFile.data),
+                contentType: "image/jpeg",
+            });
+    };
     await Memory.create({
         belongs_to: email,
         tittle,
@@ -50,13 +62,23 @@ const updateMemory = async (req, res) => {
             message: "Enter an valid email address...",
             status: 0,
         });
-    var image;
+    var images = [];
     if (files) {
-        image = {
-            name: files.file.name,
-            data: Buffer.from(files.file.data),
-            contentType: "image/jpeg",
-        }
+        const inCommingFile = files["file"];
+        const isArray = Array.isArray(inCommingFile);
+        if (isArray)
+            for (const file of inCommingFile)
+                images.push({
+                    name: file.name,
+                    data: Buffer.from(file.data),
+                    contentType: "image/jpeg",
+                });
+        else
+            images.push({
+                name: inCommingFile.name,
+                data: Buffer.from(inCommingFile.data),
+                contentType: "image/jpeg",
+            });
     };
     const { matchedCount } = await Memory.updateOne(
         {
@@ -69,7 +91,7 @@ const updateMemory = async (req, res) => {
                 description,
                 tags: tags.split(","),
                 event_date: dateOfEvent,
-                image,
+                image: images,
             }
         }
     );
