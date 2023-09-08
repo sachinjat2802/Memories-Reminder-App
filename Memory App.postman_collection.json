@@ -108,13 +108,29 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQwNjkxODIsImV4cCI6MTY5NDA3Mjc4Mn0.QFun1pcnhS7VBBtswmWDTiXVbJKONpZKqXYbWHM-QyI",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTgxMjcsImV4cCI6MTY5NDE2MTcyN30.btBzocq9XDXVZX48CQhyI8KfKuMElcaaDUgnPpbJH_A",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [
+								{
+									"key": "name",
+									"value": "3d",
+									"type": "text"
+								},
+								{
+									"key": "dob",
+									"value": "2023-09-22",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/navindurai/Downloads/Screenshot from 2023-07-27 12-52-11.png"
+								}
+							]
 						},
 						"url": {
 							"raw": "localhost:3000/user/profile/complete",
@@ -165,6 +181,56 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTc4NTYsImV4cCI6MTY5NDE2MTQ1Nn0.f3nNNlUxOhAt49LmksWoA7XhbBrXACxGlrcy_ValMsA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/user/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Profile",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTc4NTYsImV4cCI6MTY5NDE2MTQ1Nn0.f3nNNlUxOhAt49LmksWoA7XhbBrXACxGlrcy_ValMsA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/user/profile",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -205,7 +271,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTMwMzU1ODAsImV4cCI6MTY5MzAzOTE4MH0.VT8ellli8Ahetyeaijui4evicFNZoy0tS9SsjXB-NEA",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTgxMjcsImV4cCI6MTY5NDE2MTcyN30.btBzocq9XDXVZX48CQhyI8KfKuMElcaaDUgnPpbJH_A",
 								"type": "text"
 							}
 						],
@@ -215,7 +281,10 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/navindurai/Downloads/Screenshot from 2023-07-27 12-52-11.png"
+									"src": [
+										"/Users/navindurai/Pictures/General/Redmi K20 Last Moments.png",
+										"/Users/navindurai/Pictures/General/Redmi K20 Last Moments Map.png"
+									]
 								},
 								{
 									"key": "tittle",
@@ -246,13 +315,12 @@
 							]
 						},
 						"url": {
-							"raw": "https://memory-app-9bx4.onrender.com/memory/create",
-							"protocol": "https",
+							"raw": "http://localhost:3000/memory/create",
+							"protocol": "http",
 							"host": [
-								"memory-app-9bx4",
-								"onrender",
-								"com"
+								"localhost"
 							],
+							"port": "3000",
 							"path": [
 								"memory",
 								"create"
@@ -368,6 +436,32 @@
 							"path": [
 								"memory",
 								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Tags",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQwNzc2MjksImV4cCI6MTY5NDA4MTIyOX0.favwu6-M7kuZC6jtt0FNHd0NSXJ0BVhM23Vi7jQsL90",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/memory/tag/h",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"memory",
+								"tag",
+								"h"
 							]
 						}
 					},
