@@ -16,29 +16,13 @@ const createMemory = async (req, res) => {
             message: "Enter an valid email address...",
             status: 0,
         });
-    var images = [];
-    if (files) {
-        const inCommingFile = files["file"];
-        const isArray = Array.isArray(inCommingFile);
-        if (isArray)
-            for (const file of inCommingFile)
-                images.push({
-                    name: file.name,
-                    data: Buffer.from(file.data),
-                    contentType: "image/jpeg",
-                });
-        else
-            images.push({
-                name: inCommingFile.name,
-                data: Buffer.from(inCommingFile.data),
-                contentType: "image/jpeg",
-            });
-    };
+    const images = fileToBuffer(files);
+    const finalTags = getTags(tags);
     await Memory.create({
         belongs_to: email,
         tittle,
         description,
-        tags: tags.split(","),
+        tags: finalTags,
         event_date: dateOfEvent,
         image: images,
     });
@@ -62,24 +46,8 @@ const updateMemory = async (req, res) => {
             message: "Enter an valid email address...",
             status: 0,
         });
-    var images = [];
-    if (files) {
-        const inCommingFile = files["file"];
-        const isArray = Array.isArray(inCommingFile);
-        if (isArray)
-            for (const file of inCommingFile)
-                images.push({
-                    name: file.name,
-                    data: Buffer.from(file.data),
-                    contentType: "image/jpeg",
-                });
-        else
-            images.push({
-                name: inCommingFile.name,
-                data: Buffer.from(inCommingFile.data),
-                contentType: "image/jpeg",
-            });
-    };
+    const images = fileToBuffer(files);
+    const finalTags = getTags(tags);
     const { matchedCount } = await Memory.updateOne(
         {
             _id: id,
@@ -89,7 +57,7 @@ const updateMemory = async (req, res) => {
             $set: {
                 tittle,
                 description,
-                tags: tags.split(","),
+                tags: finalTags,
                 event_date: dateOfEvent,
                 image: images,
             }
@@ -165,6 +133,36 @@ const getTagsSuggestion = async (req, res) => {
         status: 1,
         data: tags,
     });
+}
+
+//////////////////////////// Helper Functions
+const fileToBuffer = (files) => {
+    var images = [];
+    if (files) {
+        const inCommingFile = files["file"];
+        const isArray = Array.isArray(inCommingFile);
+        if (isArray)
+            for (const file of inCommingFile)
+                images.push({
+                    name: file.name,
+                    data: Buffer.from(file.data),
+                    contentType: "image/jpeg",
+                });
+        else
+            images.push({
+                name: inCommingFile.name,
+                data: Buffer.from(inCommingFile.data),
+                contentType: "image/jpeg",
+            });
+    };
+    return images;
+}
+
+const getTags = (tags) => {
+    let finalTags = [];
+    if(tags.length != 0)
+        finalTags = tags.split(",");
+    return finalTags;
 }
 
 module.exports = {
