@@ -1,5 +1,6 @@
 const { hash, compare } = require("bcrypt");
 const User = require("./user-model");
+const Memory = require("../memories/memory-model");
 const { emailService, validationService, authorizationService } = require("../../services");
 
 const signUpWithOTP = async (req, res) => {
@@ -31,6 +32,7 @@ const signUpWithOTP = async (req, res) => {
     return res.status(200).json({
         message: "Sent Opt!",
         status: 1,
+        isNewUser: true,
     });
 }
 
@@ -63,6 +65,7 @@ const signUpWithPassword = async (req, res) => {
     return res.status(200).json({
         message: "User registered successfully.",
         status: 1,
+        isNewUser: true,
     });
 }
 
@@ -101,6 +104,7 @@ const loginUserWithOTP = async (req, res) => {
         message: "Logged in...!",
         status: 1,
         jwt: authorizationService.generateJWToken(email),
+        isNewUser: false,
     });
 }
 
@@ -134,6 +138,7 @@ const loginUserWithPassword = async (req, res) => {
         message: "Logged in...!",
         status: 1,
         jwt: authorizationService.generateJWToken(email),
+        isNewUser: false,
     });
 }
 
@@ -188,11 +193,37 @@ const changePassword = async (req, res) => {
 }
 
 const getJWT = async (req, res) => {
-    const { email } = req.email;
+    const { email } = req.user;
     return res.status(200).json({
         message: "Here is JWT.",
         status: 1,
         jwt: authorizationService.generateJWToken(email),
+        isNewUser: true,
+    });
+}
+
+const getUserProfile = async (req, res) => {
+    const { email } = req.user;
+    const foundUser = await User.findOne({ email });
+    if (!foundUser)
+        return res.status(404).json({
+            message: "User not found.",
+            status: 0,
+        });
+    return res.status(200).json({
+        message: "The user profile retrived.",
+        status: 1,
+        data: foundUser,
+    });
+}
+
+const deleteUserProfile = async (req, res) => {
+    const { email } = req.user;
+    await User.deleteOne({ email });
+    await Memory.deleteMany({ belongs_to: email });
+    return res.status(200).json({
+        message: "The user profile deleted.",
+        status: 1,
     });
 }
 
@@ -203,7 +234,9 @@ module.exports = {
     loginUserWithOTP,
     loginUserWithPassword,
 
+    getUserProfile,
     completeProfile,
+    deleteUserProfile,
 
     changePassword,
     getJWT,

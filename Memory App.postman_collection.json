@@ -7,200 +7,373 @@
 	},
 	"item": [
 		{
-			"name": "Create User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"smnavin65@gmail.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "auth",
+			"item": [
+				{
+					"name": "Create User Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"password\": \"navin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/signup/password",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"signup",
+								"password"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/user/signup",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"user",
-						"signup"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Login User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"otp\": \"7955\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Login User OTP",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"otp\": \"6716\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/login/otp",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login",
+								"otp"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/user/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"user",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "create Memory",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5MDU2MTksImV4cCI6MTY5MjkwOTIxOX0.45ZBvGWTLlupCk1DzUqVmjEc4AIvVg6T-29nCjK2e5Q",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": "/Users/navindurai/Downloads/Screenshot from 2023-07-27 12-52-11.png"
+				{
+					"name": "Login User Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"password\": \"navin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
-						{
-							"key": "tittle",
-							"value": "test1",
-							"type": "text"
-						},
-						{
-							"key": "description",
-							"value": "description kjndcjn",
-							"type": "text"
-						},
-						{
-							"key": "tags",
-							"value": "mnmn,navin,hi,hello",
-							"type": "text"
-						},
-						{
-							"key": "email",
-							"value": "smnavin65@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "dateOfEvent",
-							"value": "2023-08-24T19:33:39.042+00:00",
-							"type": "text"
+						"url": {
+							"raw": "localhost:3000/user/login/password",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"login",
+								"password"
+							]
 						}
-					]
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "profile",
+			"item": [
+				{
+					"name": "Profile Complete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQwNjkxODIsImV4cCI6MTY5NDA3Mjc4Mn0.QFun1pcnhS7VBBtswmWDTiXVbJKONpZKqXYbWHM-QyI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "localhost:3000/user/profile/complete",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"profile",
+								"complete"
+							]
+						}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:3000/memory/create",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"memory",
-						"create"
-					]
+				{
+					"name": "Password Change",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQwNjkxODIsImV4cCI6MTY5NDA3Mjc4Mn0.QFun1pcnhS7VBBtswmWDTiXVbJKONpZKqXYbWHM-QyI",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\": \"nv\",\n    \"newPassword\": \"navin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/user/password/change",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"password",
+								"change"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get all events of mine",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5MDU2MTksImV4cCI6MTY5MjkwOTIxOX0.45ZBvGWTLlupCk1DzUqVmjEc4AIvVg6T-29nCjK2e5Q",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/memory",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"memory"
-					]
+			"name": "memory",
+			"item": [
+				{
+					"name": "Search Memory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTMwNjcwNDQsImV4cCI6MTY5MzA3MDY0NH0.L_oEdZxFN4yRloLGY9eCUYLx0ftofP-egkTtZlPW8Ys",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/memory/search/description",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"memory",
+								"search",
+								"description"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Memory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTMwMzU1ODAsImV4cCI6MTY5MzAzOTE4MH0.VT8ellli8Ahetyeaijui4evicFNZoy0tS9SsjXB-NEA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/navindurai/Downloads/Screenshot from 2023-07-27 12-52-11.png"
+								},
+								{
+									"key": "tittle",
+									"value": "test1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "description kjndcjn",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "mnmn,navin,hi,hello",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "smnavin65@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "dateOfEvent",
+									"value": "2023-08-26",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://memory-app-9bx4.onrender.com/memory/create",
+							"protocol": "https",
+							"host": [
+								"memory-app-9bx4",
+								"onrender",
+								"com"
+							],
+							"path": [
+								"memory",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all events of mine",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5Nzc2MzgsImV4cCI6MTY5Mjk4MTIzOH0.oFVcLbyFkR91lbQ68QYG42x3ZP-i8STgDxRpGbn9Vag",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/memory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"memory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get A Memory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTMwNjcwNDQsImV4cCI6MTY5MzA3MDY0NH0.L_oEdZxFN4yRloLGY9eCUYLx0ftofP-egkTtZlPW8Ys",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/memory/64e9b15fc5b424aca7f8c3f3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"memory",
+								"64e9b15fc5b424aca7f8c3f3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Memory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTMwNDUwNDUsImV4cCI6MTY5MzA0ODY0NX0.6xtrGfJWzCCKX_AZfB5XZW9uuvKzawKIjwe_2HyEaJA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "64e9af82c5b424aca7f8c3f0",
+									"type": "text"
+								},
+								{
+									"key": "tittle",
+									"value": "hi",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "hi",
+									"type": "text"
+								},
+								{
+									"key": "tags",
+									"value": "hi",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/navindurai/Pictures/Program_Pics/GMC_BW.jpeg"
+								},
+								{
+									"key": "dateOfEvent",
+									"value": "2023-08-24T19:52:34.837+00:00",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3000/memory/update",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"memory",
+								"update"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get A Memory",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5MDU2MTksImV4cCI6MTY5MjkwOTIxOX0.45ZBvGWTLlupCk1DzUqVmjEc4AIvVg6T-29nCjK2e5Q",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/memory/64e7b5023b5a83d81bc6dbba",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"memory",
-						"64e7b5023b5a83d81bc6dbba"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update a Memory",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5MDU2MTksImV4cCI6MTY5MjkwOTIxOX0.45ZBvGWTLlupCk1DzUqVmjEc4AIvVg6T-29nCjK2e5Q",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:3000/memory/update",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"memory",
-						"update"
-					]
-				}
-			},
-			"response": []
+			]
 		}
 	]
 }

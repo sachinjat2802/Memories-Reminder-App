@@ -15,17 +15,20 @@ const createMemory = async (req, res) => {
             message: "Enter an valid email address...",
             status: 0,
         });
+    let images = [];
+    for(const file of req.files["file"])
+        images.push({
+            name: file.name,
+            data: Buffer.from(file.data),
+            contentType: "image/jpeg",
+        });
     await Memory.create({
         belongs_to: email,
         tittle,
         description,
         tags: tags.split(","),
         event_date: dateOfEvent,
-        image: {
-            name: req.files.file.name,
-            data: Buffer.from(req.files.file.data),
-            contentType: "image/jpeg",
-        }
+        image: images,
     });
     return res.status(201).json({
         message: "Successfully created Memory...",
@@ -112,7 +115,7 @@ const getAllMemoriesSorted = async (req, res) => {
 const searchMemory = async (req, res) => {
     const { email } = req.user;
     const { searchText } = req.params;
-    const data = await searchAggregations(email, searchText);
+    const data = await searchAggregations.search(email, searchText);
     return res.status(200).json({
         message: "Here are your memories...",
         status: 1,
@@ -131,6 +134,17 @@ const getAMemory = async (req, res) => {
     });
 }
 
+const getTagsSuggestion = async (req, res) => {
+    const { email } = req.user;
+    const { name } = req.params;
+    const tags = await searchAggregations.getTags(email, name);
+    return res.status(200).json({
+        message: "Tags sugeestion.",
+        status: 1,
+        data: tags,
+    });
+}
+
 module.exports = {
     createMemory,
     updateMemory,
@@ -138,4 +152,5 @@ module.exports = {
     getAllMemoriesSorted,
     searchMemory,
     getAMemory,
+    getTagsSuggestion,
 }
