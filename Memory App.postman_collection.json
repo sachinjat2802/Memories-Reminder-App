@@ -10,13 +10,13 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "Create User Password",
+					"name": "Create User OTP",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"password\": \"navin\"\n}",
+							"raw": "{\n    \"email\": \"smnavin65@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,7 +24,7 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/user/signup/password",
+							"raw": "localhost:3000/user/signup/otp",
 							"host": [
 								"localhost"
 							],
@@ -32,7 +32,7 @@
 							"path": [
 								"user",
 								"signup",
-								"password"
+								"otp"
 							]
 						}
 					},
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"otp\": \"6716\"\n}",
+							"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"otp\": \"6234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -271,7 +271,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTgxMjcsImV4cCI6MTY5NDE2MTcyN30.btBzocq9XDXVZX48CQhyI8KfKuMElcaaDUgnPpbJH_A",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNjQ4MDIsImV4cCI6MTY5NDE2ODQwMn0.aOjMqeCQ8zf0Gdpmn1KkPM-Du7cVxC-DSbFffmg-k_U",
 								"type": "text"
 							}
 						],
@@ -288,17 +288,17 @@
 								},
 								{
 									"key": "tittle",
-									"value": "test1",
+									"value": "test2",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "description kjndcjn",
+									"value": "description 2",
 									"type": "text"
 								},
 								{
 									"key": "tags",
-									"value": "mnmn,navin,hi,hello",
+									"value": "hj, kl",
 									"type": "text"
 								},
 								{
@@ -309,7 +309,7 @@
 								},
 								{
 									"key": "dateOfEvent",
-									"value": "2023-08-26",
+									"value": "2023-09-08",
 									"type": "text"
 								}
 							]
@@ -387,7 +387,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTMwNDUwNDUsImV4cCI6MTY5MzA0ODY0NX0.6xtrGfJWzCCKX_AZfB5XZW9uuvKzawKIjwe_2HyEaJA",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTk0ODMsImV4cCI6MTY5NDE2MzA4M30.9L33ZYH9Cm1CFqm7qzXvhawdiUqcqyMi5cLTi9UmmBY",
 								"type": "text"
 							}
 						],
@@ -396,7 +396,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "64e9af82c5b424aca7f8c3f0",
+									"value": "64fad69482374f460766d5ca",
 									"type": "text"
 								},
 								{
@@ -417,7 +417,8 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/navindurai/Pictures/Program_Pics/GMC_BW.jpeg"
+									"src": [],
+									"disabled": true
 								},
 								{
 									"key": "dateOfEvent",
@@ -448,7 +449,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQwNzc2MjksImV4cCI6MTY5NDA4MTIyOX0.favwu6-M7kuZC6jtt0FNHd0NSXJ0BVhM23Vi7jQsL90",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxODM4NjEsImV4cCI6MTY5NDE4NzQ2MX0.Ac49EEWzbcdnQLTPNnXw1RfPm8ohuBohJpJxO7a9QoI",
 								"type": "text"
 							}
 						],

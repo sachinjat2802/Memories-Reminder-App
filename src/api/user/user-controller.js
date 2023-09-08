@@ -16,7 +16,7 @@ const signUpWithOTP = async (req, res) => {
             status: 0,
         });
     const otp = await emailService.sendOTP(email);
-    await User.updateOne(
+    const { matchedCount } = await User.updateOne(
         { email },
         {
             $setOnInsert: {
@@ -29,10 +29,16 @@ const signUpWithOTP = async (req, res) => {
         },
         { upsert: true }
     );
+    if (matchedCount == 0)
+        return res.status(200).json({
+            message: "Sent Opt!",
+            status: 1,
+            isNewUser: true,
+        });
     return res.status(200).json({
         message: "Sent Opt!",
         status: 1,
-        isNewUser: true,
+        isNewUser: false,
     });
 }
 
@@ -65,7 +71,6 @@ const signUpWithPassword = async (req, res) => {
     return res.status(200).json({
         message: "User registered successfully.",
         status: 1,
-        isNewUser: true,
     });
 }
 
@@ -104,7 +109,6 @@ const loginUserWithOTP = async (req, res) => {
         message: "Logged in...!",
         status: 1,
         jwt: authorizationService.generateJWToken(email),
-        isNewUser: false,
     });
 }
 
@@ -121,12 +125,28 @@ const loginUserWithPassword = async (req, res) => {
             status: 0,
         });
     const foundUser = await User.findOne({ email });
-    if (!foundUser)
-        return res.status(404).json({
-            message: "No user found.",
-            status: 0,
-            error: "Invalid email id."
+    if (!foundUser) {
+        const encryptedPassword = await hash(password, 10);
+        await User.updateOne(
+            { email },
+            {
+                $setOnInsert: {
+                    email
+                },
+                $set: {
+                    password: encryptedPassword,
+                    is_loggedin: false,
+                }
+            },
+            { upsert: true }
+        );
+        return res.status(200).json({
+            message: "Logged in...!",
+            status: 1,
+            jwt: authorizationService.generateJWToken(email),
+            isNewUser: true,
         });
+    }
     const passwordMatched = await compare(password, foundUser["password"]);
     if (!passwordMatched)
         return res.status(403).json({

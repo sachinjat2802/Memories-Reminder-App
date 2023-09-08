@@ -1,9 +1,8 @@
 const express = require('express');
 const { authorizationService } = require("../../services");
-const { signUpWithOTP, signUpWithPassword, loginUserWithOTP, loginUserWithPassword, completeProfile, changePassword, getJWT, getUserProfile, deleteUserProfile } = require("./user-controller");
+const { signUpWithOTP, loginUserWithOTP, loginUserWithPassword, completeProfile, changePassword, getJWT, getUserProfile, deleteUserProfile } = require("./user-controller");
 const router = express.Router();
 
-router.post("/signup/password", signUpWithPassword);
 router.post("/signup/otp", signUpWithOTP);
 
 router.post("/login/otp", loginUserWithOTP);
