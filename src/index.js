@@ -22,7 +22,7 @@ app.use("/user", userRoute);
 app.use("/memory", memoryRoute);
 
 
-cron.schedule('36 * * * *', async () => {
+cron.schedule('0 1 * * *', async () => {
     console.log('running every minute 1, 2, 4 and 5');
     await automate.sendNotification();
 });
