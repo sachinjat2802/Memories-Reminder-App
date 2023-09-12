@@ -29,16 +29,10 @@ const signUpWithOTP = async (req, res) => {
         },
         { upsert: true }
     );
-    if (matchedCount == 0)
-        return res.status(200).json({
-            message: "Sent Opt!",
-            status: 1,
-            isNewUser: true,
-        });
     return res.status(200).json({
         message: "Sent Opt!",
         status: 1,
-        isNewUser: false,
+        isNewUser: matchedCount == 0,
     });
 }
 
@@ -99,6 +93,7 @@ const loginUserWithOTP = async (req, res) => {
             }
         },
     );
+    const foundUser = await User.findOne({ email });
     if (matchedCount == 0)
         return res.status(403).json({
             message: "OTP and email does not match...",
@@ -109,6 +104,7 @@ const loginUserWithOTP = async (req, res) => {
         message: "Logged in...!",
         status: 1,
         jwt: authorizationService.generateJWToken(email),
+        isNewUser: foundUser["name"] ? false : true,
     });
 }
 
@@ -163,20 +159,31 @@ const loginUserWithPassword = async (req, res) => {
 }
 
 const completeProfile = async (req, res) => {
-    const { email } = req.user;
-    const { name, dob } = req.body;
+    const { user, body, files } = req;
+    const { email } = user;
+    const { name, dob } = body;
 
+    if (!name)
+        return res.status(200).json({
+            message: "Enter the name.",
+            status: 0,
+            error: "Missing required field name."
+        });
+
+    var profilePicture;
+    if(files)
+        profilePicture = {
+            name: files.file.name,
+            data: Buffer.from(files.file.data),
+            contentType: "image/jpeg",
+        };
     await User.updateOne(
         { email },
         {
             $set: {
                 name,
                 dob,
-                profilePicture: {
-                    name: req.files.file.name,
-                    data: Buffer.from(req.files.file.data),
-                    contentType: "image/jpeg",
-                },
+                profilePicture,
             }
         }
     );
