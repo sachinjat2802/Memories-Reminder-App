@@ -121,7 +121,7 @@ const loginUserWithPassword = async (req, res) => {
             status: 0,
         });
     const foundUser = await User.findOne({ email });
-    if (!foundUser) {
+    if (!foundUser || !foundUser["password"]) {
         const encryptedPassword = await hash(password, 10);
         await User.updateOne(
             { email },
