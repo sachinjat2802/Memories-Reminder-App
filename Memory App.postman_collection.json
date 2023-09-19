@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"smnavin65@gmail.com\"\n}",
+							"raw": "{\n    \"email\": \"noreply.connectverse@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -45,7 +45,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"otp\": \"6234\"\n}",
+							"raw": "{\n    \"email\": \"noreply.connectverse@gmail.com\",\n    \"otp\": \"1760\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -74,7 +74,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"smnavin65@gmail.com\",\n    \"password\": \"navin\"\n}",
+							"raw": "{\n    \"email\": \"noreply.connectverse@gmail.com\",\n    \"password\": \"navin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -82,15 +82,48 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/user/login/password",
+							"raw": "http://139.59.95.44:3000/user/login/password",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
 								"user",
 								"login",
 								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get JWT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pec@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/oauth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"oauth"
 							]
 						}
 					},
@@ -108,7 +141,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTgxMjcsImV4cCI6MTY5NDE2MTcyN30.btBzocq9XDXVZX48CQhyI8KfKuMElcaaDUgnPpbJH_A",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ1NDIxOTQsImV4cCI6MTY5NDU0NTc5NH0.m-phGGuO-yShh3I89XcwUMSEwxqzbpIOP2g-P_h_Y5A",
 								"type": "text"
 							}
 						],
@@ -128,14 +161,19 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/navindurai/Downloads/Screenshot from 2023-07-27 12-52-11.png"
+									"src": [],
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "localhost:3000/user/profile/complete",
+							"raw": "http://139.59.95.44:3000/user/profile/complete",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -189,14 +227,18 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTc4NTYsImV4cCI6MTY5NDE2MTQ1Nn0.f3nNNlUxOhAt49LmksWoA7XhbBrXACxGlrcy_ValMsA",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ1NDIxOTQsImV4cCI6MTY5NDU0NTc5NH0.m-phGGuO-yShh3I89XcwUMSEwxqzbpIOP2g-P_h_Y5A",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/user/profile",
+							"raw": "http://139.59.95.44:3000/user/profile",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -271,7 +313,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNjQ4MDIsImV4cCI6MTY5NDE2ODQwMn0.aOjMqeCQ8zf0Gdpmn1KkPM-Du7cVxC-DSbFffmg-k_U",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ1NDIxOTQsImV4cCI6MTY5NDU0NTc5NH0.m-phGGuO-yShh3I89XcwUMSEwxqzbpIOP2g-P_h_Y5A",
 								"type": "text"
 							}
 						],
@@ -309,16 +351,19 @@
 								},
 								{
 									"key": "dateOfEvent",
-									"value": "2023-09-08",
+									"value": "2023-09-12",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/memory/create",
+							"raw": "http://139.59.95.44:3000/memory/create",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [

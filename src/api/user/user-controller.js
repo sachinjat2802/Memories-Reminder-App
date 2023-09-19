@@ -220,12 +220,33 @@ const changePassword = async (req, res) => {
 }
 
 const getJWT = async (req, res) => {
-    const { email } = req.user;
+    const { email } = req.body;
+    const foundUser = await User.findOne({ email });
+    if (!foundUser) {
+        await User.updateOne(
+            { email },
+            {
+                $setOnInsert: {
+                    email
+                },
+                $set: {
+                    is_loggedin: false,
+                }
+            },
+            { upsert: true }
+        );
+        return res.status(200).json({
+            message: "Logged in...!",
+            status: 1,
+            jwt: authorizationService.generateJWToken(email),
+            isNewUser: true,
+        });
+    }
     return res.status(200).json({
         message: "Here is JWT.",
         status: 1,
         jwt: authorizationService.generateJWToken(email),
-        isNewUser: true,
+        isNewUser: false,
     });
 }
 

@@ -13,6 +13,6 @@ router.post("/profile/complete", authorizationService.authenticateUser, complete
 router.delete("/profile", authorizationService.authenticateUser, deleteUserProfile);
 
 router.post("/password/change", authorizationService.authenticateUser, changePassword);
-router.post("/oauth", authorizationService.authenticateUser, getJWT);
+router.post("/oauth", getJWT);
 
 module.exports = router;
