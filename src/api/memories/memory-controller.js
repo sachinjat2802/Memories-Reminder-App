@@ -3,76 +3,94 @@ const { validationService } = require("../../services");
 const { searchAggregations, sortingAggregations } = require("./aggregations");
 
 const createMemory = async (req, res) => {
-    const { files, body, user } = req;
-    const { email } = user;
-    const { tittle, description, tags = [], dateOfEvent } = body;
-    if (!tittle || !description || !dateOfEvent)
-        return res.status(400).json({
-            message: "Enter tittle, description, dateOfEvent",
-            status: 0,
+    try {
+        const { files, body, user } = req;
+        const { email } = user;
+        const { tittle, description, tags = [], dateOfEvent } = body;
+        if (!tittle || !description)
+            return res.status(400).json({
+                message: "Enter tittle, description",
+                status: 0,
+            });
+        if (!validationService.isValidEmail(email))
+            return res.status(400).json({
+                message: "Enter an valid email address...",
+                status: 0,
+            });
+        const images = fileToBuffer(files);
+        const finalTags = getTags(tags);
+        await Memory.create({
+            belongs_to: email,
+            tittle,
+            description,
+            tags: finalTags,
+            event_date: dateOfEvent,
+            image: images,
         });
-    if (!validationService.isValidEmail(email))
-        return res.status(400).json({
-            message: "Enter an valid email address...",
-            status: 0,
+        return res.status(201).json({
+            message: "Successfully created Memory...",
+            status: 1,
         });
-    const images = fileToBuffer(files);
-    const finalTags = getTags(tags);
-    await Memory.create({
-        belongs_to: email,
-        tittle,
-        description,
-        tags: finalTags,
-        event_date: dateOfEvent,
-        image: images,
-    });
-    return res.status(201).json({
-        message: "Successfully created Memory...",
-        status: 1,
-    });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+            message: "Something went wrong.",
+            status: 0,
+            error: e.message
+        });
+    }
 }
 
 const updateMemory = async (req, res) => {
-    const { user, files, body } = req;
-    const { email } = user;
-    const { id, tittle, description, tags = [], dateOfEvent } = body;
-    if (!id || !tittle || !description || !dateOfEvent)
-        return res.status(400).json({
-            message: "Enter id, tittle, description, dateOfEvent",
-            status: 0,
-        });
-    if (!validationService.isValidEmail(email))
-        return res.status(400).json({
-            message: "Enter an valid email address...",
-            status: 0,
-        });
-    const images = fileToBuffer(files);
-    const finalTags = getTags(tags);
-    const { matchedCount } = await Memory.updateOne(
-        {
-            _id: id,
-            belongs_to: email,
-        },
-        {
-            $set: {
-                tittle,
-                description,
-                tags: finalTags,
-                event_date: dateOfEvent,
-                image: images,
+    try {
+        const { user, files, body } = req;
+        const { email } = user;
+        const { id, tittle, description, tags = [], dateOfEvent } = body;
+        if (!id || !tittle || !description)
+            return res.status(400).json({
+                message: "Enter id, tittle, description",
+                status: 0,
+            });
+        if (!validationService.isValidEmail(email))
+            return res.status(400).json({
+                message: "Enter an valid email address...",
+                status: 0,
+            });
+        const images = fileToBuffer(files);
+        const finalTags = getTags(tags);
+        const { matchedCount } = await Memory.updateOne(
+            {
+                _id: id,
+                belongs_to: email,
+            },
+            {
+                $set: {
+                    tittle,
+                    description,
+                    tags: finalTags,
+                    event_date: dateOfEvent,
+                    image: images,
+                }
             }
-        }
-    );
-    if (matchedCount == 0)
-        return res.status(404).json({
-            message: "Memory does not exist...",
-            status: 0,
-            error: "Invalid memory id."
+        );
+        if (matchedCount == 0)
+            return res.status(404).json({
+                message: "Memory does not exist...",
+                status: 0,
+                error: "Invalid memory id."
+            });
+        return res.status(201).json({
+            message: "Successfully updated Memory...",
+            status: 1,
         });
-    return res.status(201).json({
-        message: "Successfully updated Memory...",
-        status: 1,
-    });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+            message: "Something went wrong.",
+            status: 0,
+            error: e.message
+        });
+    }
 }
 
 const getAllMemories = async (req, res) => {
@@ -131,7 +149,7 @@ const getTagsSuggestion = async (req, res) => {
     let suggestions = [];
     tags.map(memories => {
         memories["tags"].map(tag => {
-            if(tag.includes(name) && !suggestions.includes(tag))
+            if (tag.includes(name) && !suggestions.includes(tag))
                 suggestions.push(tag);
         });
     });
@@ -167,7 +185,7 @@ const fileToBuffer = (files) => {
 
 const getTags = (tags) => {
     let finalTags = [];
-    if(tags.length != 0)
+    if (tags.length != 0)
         finalTags = tags.split(",");
     return finalTags;
 }

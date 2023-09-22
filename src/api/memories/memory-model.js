@@ -26,7 +26,7 @@ const memory = new Schema({
     }],
     event_date: {
         type: Date,
-        required: true,
+        required: false,
     },
     last_notification_sent: {
         type: Date,
