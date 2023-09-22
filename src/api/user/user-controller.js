@@ -177,21 +177,29 @@ const completeProfile = async (req, res) => {
             data: Buffer.from(files.file.data),
             contentType: "image/jpeg",
         };
-    await User.updateOne(
-        { email },
-        {
-            $set: {
-                name,
-                dob,
-                profilePicture,
+    try {
+        await User.updateOne(
+            { email },
+            {
+                $set: {
+                    name,
+                    dob,
+                    profilePicture,
+                }
             }
-        }
-    );
-
-    return res.status(200).json({
-        message: "User profile setup completed.",
-        status: 1,
-    });
+        );
+        return res.status(200).json({
+            message: "User profile setup completed.",
+            status: 1,
+        });
+    } catch (e) {
+        return res.status(500).json({
+            message: "Error updating user.",
+            status: 0,
+            error: e.message,
+        });
+    }
+    
 }
 
 const changePassword = async (req, res) => {
