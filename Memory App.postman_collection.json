@@ -82,13 +82,10 @@
 							}
 						},
 						"url": {
-							"raw": "http://139.59.95.44:3000/user/login/password",
+							"raw": "http://localhost:3000/user/login/password",
 							"protocol": "http",
 							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
+								"localhost"
 							],
 							"port": "3000",
 							"path": [
@@ -115,10 +112,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/user/oauth",
+							"raw": "http://139.59.95.44:3000/user/oauth",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -141,7 +141,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ1NDIxOTQsImV4cCI6MTY5NDU0NTc5NH0.m-phGGuO-yShh3I89XcwUMSEwxqzbpIOP2g-P_h_Y5A",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTM5MzIzMywiZXhwIjoxNjk1Mzk2ODMzfQ.XsajDP5VnN8V9IgTy0SNfeFnOQTaG-NXyx22HwIYUlM",
 								"type": "text"
 							}
 						],
@@ -313,7 +313,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ1NDIxOTQsImV4cCI6MTY5NDU0NTc5NH0.m-phGGuO-yShh3I89XcwUMSEwxqzbpIOP2g-P_h_Y5A",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTM5MzIzMywiZXhwIjoxNjk1Mzk2ODMzfQ.XsajDP5VnN8V9IgTy0SNfeFnOQTaG-NXyx22HwIYUlM",
 								"type": "text"
 							}
 						],
@@ -323,10 +323,8 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [
-										"/Users/navindurai/Pictures/General/Redmi K20 Last Moments.png",
-										"/Users/navindurai/Pictures/General/Redmi K20 Last Moments Map.png"
-									]
+									"src": [],
+									"disabled": true
 								},
 								{
 									"key": "tittle",
@@ -345,25 +343,21 @@
 								},
 								{
 									"key": "email",
-									"value": "smnavin65@gmail.com",
-									"type": "text",
-									"disabled": true
+									"value": "hkhishore@gmail.com",
+									"type": "text"
 								},
 								{
 									"key": "dateOfEvent",
 									"value": "2023-09-12",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
 						"url": {
-							"raw": "http://139.59.95.44:3000/memory/create",
-							"protocol": "http",
+							"raw": "localhost:3000/memory/create",
 							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
+								"localhost"
 							],
 							"port": "3000",
 							"path": [
@@ -432,7 +426,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxNTk0ODMsImV4cCI6MTY5NDE2MzA4M30.9L33ZYH9Cm1CFqm7qzXvhawdiUqcqyMi5cLTi9UmmBY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTM5MzIzMywiZXhwIjoxNjk1Mzk2ODMzfQ.XsajDP5VnN8V9IgTy0SNfeFnOQTaG-NXyx22HwIYUlM",
 								"type": "text"
 							}
 						],
@@ -441,7 +435,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "64fad69482374f460766d5ca",
+									"value": "650da6a4d880bc5e16a7bb0e",
 									"type": "text"
 								},
 								{
@@ -457,7 +451,8 @@
 								{
 									"key": "tags",
 									"value": "hi",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "file",
@@ -468,7 +463,8 @@
 								{
 									"key": "dateOfEvent",
 									"value": "2023-08-24T19:52:34.837+00:00",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -508,6 +504,288 @@
 								"memory",
 								"tag",
 								"h"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "Toggle Notification",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5MDQwOSwiZXhwIjoxNjk1NDk0MDA5fQ.85xJzSLpwHmaUKWbXA05WhSk80tKKAVwGzdY9RH2jb4",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/notification/toggle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification",
+								"toggle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Title",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tittles\": \"nature, evironment\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/notification/tittle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification",
+								"tittle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Image",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"status\": \"HAS_IMAGE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/notification/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Tags",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tags\": \"nature, evironment\",\n    \"filterMatch\": \"EXACT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/notification/tag",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tittle",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/notification/tittle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification",
+								"tittle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Image",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/notification/image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tag",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/notification/tag",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Notification",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/notification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Notification Settings",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"limit\": 3,\n    \"repeat\": 1,\n    \"onEventOnly\": \"true\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/notification",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"notification"
 							]
 						}
 					},

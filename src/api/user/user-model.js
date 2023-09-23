@@ -31,10 +31,70 @@ const user = new Schema({
         type: Boolean,
         default: false,
     },
-    sms_enabled: {
-        type: Boolean,
-        default: false,
-        required: true,
+    notification: {
+        enabled: {
+            type: Boolean,
+            default: false,
+            required: true,
+        },
+        limit: {
+            type: Number,
+            default: 1,
+            required: true
+        },
+        repeat: {
+            type: Number,
+            default: 30,
+            required: true,
+        },
+        only_date_of_event: {
+            type: Boolean,
+            default: false,
+            required: true,
+        },
+        filters: {
+            tittle: {
+                tittles: [String],
+                enabled: {
+                    type: Boolean,
+                    default: false,
+                    required: true,
+                }
+            },
+            description: {
+                descriptions: [String],
+                enabled: {
+                    type: Boolean,
+                    default: false,
+                    required: true,
+                }
+            },
+            tag: {
+                tags: [String],
+                filter_match: {
+                    type: String,
+                    enum: ["ALL", "ANY", "EXACT"],
+                    default: "ANY",
+                },
+                enabled: {
+                    type: Boolean,
+                    default: false,
+                    required: true,
+                },
+            },
+            image: {
+                status: {
+                    type: String,
+                    enum: ["HAS_IMAGE", "NO_IMAGE"],
+                    default: "HAS_IMAGE",
+                },
+                enabled: {
+                    type: Boolean,
+                    default: false,
+                    required: true,
+                }
+            },
+        },
     },
     isDeleted: {
         type: Boolean,
