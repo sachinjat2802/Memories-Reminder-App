@@ -73,8 +73,8 @@ const user = new Schema({
                 tags: [String],
                 filter_match: {
                     type: String,
-                    enum: ["ALL", "ANY", "EXACT"],
-                    default: "ANY",
+                    enum: ["Has any of", "Has all of", "Has exactly"],
+                    default: "Has any of",
                 },
                 enabled: {
                     type: Boolean,
@@ -85,8 +85,8 @@ const user = new Schema({
             image: {
                 status: {
                     type: String,
-                    enum: ["HAS_IMAGE", "NO_IMAGE"],
-                    default: "HAS_IMAGE",
+                    enum: ["Has images", "Doesnt have images"],
+                    default: "Has images",
                 },
                 enabled: {
                     type: Boolean,

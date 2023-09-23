@@ -24,7 +24,7 @@ const updateNotificationSettings = async (req, res) => {
     try {
         const { user, body } = req;
         const { email } = user;
-        const { limit, repeat, onEventOnly } = body;
+        const { limit, repeat, onEventOnly, tittle, tag, image, description } = body;
         await User.updateOne(
             { email },
             {
@@ -32,6 +32,10 @@ const updateNotificationSettings = async (req, res) => {
                     "notification.limit": limit,
                     "notification.repeat": repeat,
                     "notification.only_date_of_event": onEventOnly,
+                    "notification.filters.tittle": tittle,
+                    "notification.filters.description": tag,
+                    "notification.filters.tag": image,
+                    "notification.filters.image": description,
                 }
             }
         );

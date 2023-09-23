@@ -82,10 +82,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/user/login/password",
+							"raw": "http://139.59.95.44:3000/user/login/password",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -737,15 +740,18 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NzQ5NSwiZXhwIjoxNjk1NTAxMDk1fQ.laMBvQ0wRZ57V1u_bWHBOZxY8RpLWKJqJ-SIq9aU44k",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/user/notification",
+							"raw": "http://139.59.95.44:3000/user/notification",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -769,7 +775,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"limit\": 3,\n    \"repeat\": 1,\n    \"onEventOnly\": \"true\"\n}",
+							"raw": "{\n    \"tittle\": {\n        \"tittles\": [\"hi\", \"nature\"],\n        \"enabled\": true\n    },\n    \"description\": {\n        \"descriptions\": [],\n        \"enabled\": false\n    },\n    \"tag\": {\n        \"tags\": [\"study\", \"play\"],\n        \"filter_match\": \"Has exactly\",\n        \"enabled\": true\n    },\n    \"image\": {\n        \"status\": \"Has images\",\n        \"enabled\": true\n    },\n    \"enabled\": false,\n    \"limit\": 1,\n    \"repeat\": 30,\n    \"only_date_of_event\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
