@@ -31,6 +31,11 @@ const user = new Schema({
         type: Boolean,
         default: false,
     },
+    sms_enabled: {
+        type: Boolean,
+        default: false,
+        required: true,
+    },
     isDeleted: {
         type: Boolean,
         default: false

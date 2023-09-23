@@ -283,6 +283,33 @@ const deleteUserProfile = async (req, res) => {
     });
 }
 
+const toggleSMS = async (req, res) => {
+    try {
+        const { email } = req.user;
+        const foundUser = await User.findOne({ email });
+        const flag = !foundUser["sms_enabled"];
+        await User.updateOne(
+            { email },
+            {
+                $set: {
+                    sms_enabled: flag,
+                }
+            },
+        );
+        return res.status(200).json({
+            message: `${flag ? "Enabled" : "Disabled"} Notification.`,
+            status: 1,
+        });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+            message: "Errror getting the document.",
+            status: 0,
+            error: e.message,
+        });
+    }
+};
+
 module.exports = {
     signUpWithOTP,
     signUpWithPassword,
@@ -296,4 +323,6 @@ module.exports = {
 
     changePassword,
     getJWT,
+
+    toggleSMS,
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const { authorizationService } = require("../../services");
-const { signUpWithOTP, loginUserWithOTP, loginUserWithPassword, completeProfile, changePassword, getJWT, getUserProfile, deleteUserProfile } = require("./user-controller");
+const { signUpWithOTP, loginUserWithOTP, loginUserWithPassword, completeProfile, changePassword, getJWT, getUserProfile, deleteUserProfile, toggleSMS } = require("./user-controller");
 const router = express.Router();
 
 router.post("/signup/otp", signUpWithOTP);
@@ -14,5 +14,7 @@ router.delete("/profile", authorizationService.authenticateUser, deleteUserProfi
 
 router.post("/password/change", authorizationService.authenticateUser, changePassword);
 router.post("/oauth", getJWT);
+
+router.get("/notification/toggle", authorizationService.authenticateUser, toggleSMS);
 
 module.exports = router;
