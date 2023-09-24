@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require("../api/user/user-model");
 const { TOKEN_SECRET } = require("../config");
 
-const generateJWToken = (email) => jwt.sign({ email }, TOKEN_SECRET, { expiresIn: "1h" });
+const generateJWToken = (email) => jwt.sign({ email }, TOKEN_SECRET, { expiresIn: "2h" });
 
 const authenticateUser = (req, res, next) => {
     const { authorization } = req.headers;
