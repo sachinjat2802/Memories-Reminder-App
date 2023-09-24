@@ -190,6 +190,15 @@ const getTagsSuggestion = async (req, res) => {
                     suggestions.push(tag);
             });
         });
+        if(suggestions.length == 0) {
+            const foundMemory = await Memory.find({ belongs_to: email });
+            foundMemory.map(memories => {
+                memories["tags"].map(tag => {
+                    if (!suggestions.includes(tag))
+                        suggestions.push(tag);
+                });
+            });
+        }
         return res.status(200).json({
             message: "Tags sugeestion.",
             status: 1,
