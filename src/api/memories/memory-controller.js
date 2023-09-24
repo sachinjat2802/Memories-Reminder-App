@@ -190,7 +190,7 @@ const getTagsSuggestion = async (req, res) => {
                     suggestions.push(tag);
             });
         });
-        if(name == "!0000") {
+        if(name == "!0000" || suggestions.length == 0) {
             const foundMemory = await Memory.find({ belongs_to: email });
             foundMemory.map(memories => {
                 memories["tags"].map(tag => {
