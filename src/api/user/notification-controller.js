@@ -58,12 +58,12 @@ const toggleSMS = async (req, res) => {
     try {
         const { email } = req.user;
         const foundUser = await User.findOne({ email });
-        const flag = !foundUser["notification"]["enabled"];
+        const flag = !foundUser["enabled_notification"];
         await User.updateOne(
             { email },
             {
                 $set: {
-                    "notification.enabled": flag,
+                    "enabled_notification": flag,
                 }
             },
         );
