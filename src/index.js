@@ -8,6 +8,7 @@ require("dotenv").config();
 const { PORT, DB_URL, mongooseConnect } = require("./config");
 const userRoute = require("./api/user");
 const memoryRoute = require("./api/memories");
+const notificationRoute = require("./api/notification");
 const automate = require("./services/automation-service");
 
 
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/user", userRoute);
 app.use("/memory", memoryRoute);
+app.use("/notification", notificationRoute);
 
 
 cron.schedule('0 1 * * *', async () => {

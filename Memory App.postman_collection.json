@@ -289,12 +289,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTMwNjcwNDQsImV4cCI6MTY5MzA3MDY0NH0.L_oEdZxFN4yRloLGY9eCUYLx0ftofP-egkTtZlPW8Ys",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTU1NzA3MywiZXhwIjoxNjk1NTY0MjczfQ.dxDDiO1U129Mzjy7mhIyNbCGid7pC8pPK6AxFG8KVEo",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/memory/search/description",
+							"raw": "http://localhost:3000/memory/search/h",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -303,7 +303,7 @@
 							"path": [
 								"memory",
 								"search",
-								"description"
+								"h"
 							]
 						}
 					},
@@ -316,7 +316,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTM5MzIzMywiZXhwIjoxNjk1Mzk2ODMzfQ.XsajDP5VnN8V9IgTy0SNfeFnOQTaG-NXyx22HwIYUlM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTUzNTIzNSwiZXhwIjoxNjk1NTM4ODM1fQ.NKRLExTBOdqqoN75q5ONbKuc6IwAVnIGttyzuyQJsvM",
 								"type": "text"
 							}
 						],
@@ -341,13 +341,14 @@
 								},
 								{
 									"key": "tags",
-									"value": "hj, kl",
+									"value": "hi,gg",
 									"type": "text"
 								},
 								{
 									"key": "email",
 									"value": "hkhishore@gmail.com",
-									"type": "text"
+									"type": "text",
+									"disabled": true
 								},
 								{
 									"key": "dateOfEvent",
@@ -358,9 +359,13 @@
 							]
 						},
 						"url": {
-							"raw": "localhost:3000/memory/create",
+							"raw": "http://139.59.95.44:3000/memory/create",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -493,20 +498,24 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQxODM4NjEsImV4cCI6MTY5NDE4NzQ2MX0.Ac49EEWzbcdnQLTPNnXw1RfPm8ohuBohJpJxO7a9QoI",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTUzNTIzNSwiZXhwIjoxNjk1NTM4ODM1fQ.NKRLExTBOdqqoN75q5ONbKuc6IwAVnIGttyzuyQJsvM",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/memory/tag/h",
+							"raw": "http://139.59.95.44:3000/memory/tag/!0000",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
 								"memory",
 								"tag",
-								"h"
+								"!0000"
 							]
 						}
 					},
@@ -517,6 +526,141 @@
 		{
 			"name": "Notifications",
 			"item": [
+				{
+					"name": "v2",
+					"item": [
+						{
+							"name": "Add Notification",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTkxMjMwNiwiZXhwIjoxNjk1OTE5NTA2fQ.sOzQ22cvu7FDtS-qV18WIh5BYdjIMnmitvlImCoQwWQ",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"_id\": \"651597e6c07377c78616ca91\",\n    \"limit\": 3,\n    \"repeat\": 1,\n    \"only_date_of_event\": true,\n    \"tittle\": {\n        \"tittles\": [\"Sample Title 1\", \"Sample Title 2\"],\n        \"enabled\": true\n    },\n    \"description\": {\n        \"descriptions\": [\"Sample Description 1\", \"Sample Description 2\"],\n        \"enabled\": true\n    },\n    \"tag\": {\n        \"tags\": [\"Tag1\", \"Tag2\"],\n        \"filter_match\": \"Has all of\",\n        \"enabled\": true\n    },\n    \"image\": {\n        \"status\": \"Doesnt have images\",\n        \"enabled\": false\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:3000/notification",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Notification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:3000/notification",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Notifications",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTkxMjMwNiwiZXhwIjoxNjk1OTE5NTA2fQ.sOzQ22cvu7FDtS-qV18WIh5BYdjIMnmitvlImCoQwWQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/notification",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"notification"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a notification",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTkxMjMwNiwiZXhwIjoxNjk1OTE5NTA2fQ.sOzQ22cvu7FDtS-qV18WIh5BYdjIMnmitvlImCoQwWQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/notification/651597e6c07377c78616ca91",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"notification",
+										"651597e6c07377c78616ca91"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a notification",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTkxMjMwNiwiZXhwIjoxNjk1OTE5NTA2fQ.sOzQ22cvu7FDtS-qV18WIh5BYdjIMnmitvlImCoQwWQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3000/notification/651597e6c07377c78616ca91",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"notification",
+										"651597e6c07377c78616ca91"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "Toggle Notification",
 					"request": {
@@ -740,7 +884,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NzQ5NSwiZXhwIjoxNjk1NTAxMDk1fQ.laMBvQ0wRZ57V1u_bWHBOZxY8RpLWKJqJ-SIq9aU44k",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTU1NTIwMiwiZXhwIjoxNjk1NTYyNDAyfQ.y9ae4DP9ld4C-qs38wg1iqS1oJMpcWmpBHR8fsZXik4",
 								"type": "text"
 							}
 						],
@@ -769,13 +913,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5NTg1NiwiZXhwIjoxNjk1NDk5NDU2fQ.5hqIXSQmeF5TxgM0ObdO82nls33J1MaiLB-a0SQ5QIo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTU1NTIwMiwiZXhwIjoxNjk1NTYyNDAyfQ.y9ae4DP9ld4C-qs38wg1iqS1oJMpcWmpBHR8fsZXik4",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tittle\": {\n        \"tittles\": [\"hi\", \"nature\"],\n        \"enabled\": true\n    },\n    \"description\": {\n        \"descriptions\": [],\n        \"enabled\": false\n    },\n    \"tag\": {\n        \"tags\": [\"study\", \"play\"],\n        \"filter_match\": \"Has exactly\",\n        \"enabled\": true\n    },\n    \"image\": {\n        \"status\": \"Has images\",\n        \"enabled\": true\n    },\n    \"enabled\": false,\n    \"limit\": 1,\n    \"repeat\": 30,\n    \"only_date_of_event\": false\n}",
+							"raw": "{\n    \"tittle\": {\n        \"tittles\": [\n            \"test\"\n        ],\n        \"enabled\": true\n    },\n    \"description\": {\n        \"descriptions\": [\n            \"test2\"\n        ],\n        \"enabled\": true\n    },\n    \"tag\": {\n        \"tags\": [\n            \"Music\"\n        ],\n        \"filter_match\": \"Has any of\",\n        \"enabled\": true\n    },\n    \"image\": {\n        \"status\": \"Has images\",\n        \"enabled\": true\n    },\n    \"enabled\": true,\n    \"limit\": \"15\",\n    \"repeat\": \"78\",\n    \"only_date_of_event\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -783,10 +927,13 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/user/notification",
+							"raw": "http://139.59.95.44:3000/user/notification",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
