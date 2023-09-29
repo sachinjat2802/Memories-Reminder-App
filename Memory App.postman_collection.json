@@ -230,18 +230,14 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTQ1NDIxOTQsImV4cCI6MTY5NDU0NTc5NH0.m-phGGuO-yShh3I89XcwUMSEwxqzbpIOP2g-P_h_Y5A",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTkxNjI0MiwiZXhwIjoxNjk1OTIzNDQyfQ.g5FF2g3ezWWQ9ZECMxPiBkJPhSjtI5p_g9XSzQ9nbYY",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://139.59.95.44:3000/user/profile",
-							"protocol": "http",
+							"raw": "localhost:3000/user/profile",
 							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
+								"localhost"
 							],
 							"port": "3000",
 							"path": [
@@ -289,7 +285,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTU1NzA3MywiZXhwIjoxNjk1NTY0MjczfQ.dxDDiO1U129Mzjy7mhIyNbCGid7pC8pPK6AxFG8KVEo",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjkxNywiZXhwIjoxNjk2MDAwMTE3fQ.D3XS-jFkMDwb-WD7mJUyyO46nzeevS3dAwcOI50bLfk",
 								"type": "text"
 							}
 						],
@@ -316,7 +312,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTUzNTIzNSwiZXhwIjoxNjk1NTM4ODM1fQ.NKRLExTBOdqqoN75q5ONbKuc6IwAVnIGttyzuyQJsvM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjkxNywiZXhwIjoxNjk2MDAwMTE3fQ.D3XS-jFkMDwb-WD7mJUyyO46nzeevS3dAwcOI50bLfk",
 								"type": "text"
 							}
 						],
@@ -326,8 +322,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [],
-									"disabled": true
+									"src": "/Users/navindurai/Downloads/loga-github.jpeg"
 								},
 								{
 									"key": "tittle",
@@ -359,13 +354,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://139.59.95.44:3000/memory/create",
+							"raw": "http://localhost:3000/memory/create",
 							"protocol": "http",
 							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
+								"localhost"
 							],
 							"port": "3000",
 							"path": [
@@ -383,7 +375,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTI5Nzc2MzgsImV4cCI6MTY5Mjk4MTIzOH0.oFVcLbyFkR91lbQ68QYG42x3ZP-i8STgDxRpGbn9Vag",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjkxNywiZXhwIjoxNjk2MDAwMTE3fQ.D3XS-jFkMDwb-WD7mJUyyO46nzeevS3dAwcOI50bLfk",
 								"type": "text"
 							}
 						],
@@ -434,7 +426,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTM5MzIzMywiZXhwIjoxNjk1Mzk2ODMzfQ.XsajDP5VnN8V9IgTy0SNfeFnOQTaG-NXyx22HwIYUlM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5ODQzMywiZXhwIjoxNjk2MDA1NjMzfQ.k0PX75RM7Jn1XpEXTSZn6Tj1iD1qL5I8Db3bbxAQM08",
 								"type": "text"
 							}
 						],
@@ -443,12 +435,12 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "650da6a4d880bc5e16a7bb0e",
+									"value": "6516cd05a81eeefe5236a5f0",
 									"type": "text"
 								},
 								{
 									"key": "tittle",
-									"value": "hi",
+									"value": "jnjn",
 									"type": "text"
 								},
 								{
@@ -465,14 +457,18 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [],
-									"disabled": true
+									"src": "/Users/navindurai/Downloads/loga-github.jpeg"
 								},
 								{
 									"key": "dateOfEvent",
 									"value": "2023-08-24T19:52:34.837+00:00",
 									"type": "text",
 									"disabled": true
+								},
+								{
+									"key": "imgToRemove",
+									"value": "[\"Screenshot from 2023-07-27 12-52-11.png\"]",
+									"type": "text"
 								}
 							]
 						},
@@ -536,13 +532,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTkxMjMwNiwiZXhwIjoxNjk1OTE5NTA2fQ.sOzQ22cvu7FDtS-qV18WIh5BYdjIMnmitvlImCoQwWQ",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjYyOSwiZXhwIjoxNjk1OTk5ODI5fQ.5JfsqkyVo8QzgF5vo_y6moeNbmokPcSFW4d9vwwyiRw",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_id\": \"651597e6c07377c78616ca91\",\n    \"limit\": 3,\n    \"repeat\": 1,\n    \"only_date_of_event\": true,\n    \"tittle\": {\n        \"tittles\": [\"Sample Title 1\", \"Sample Title 2\"],\n        \"enabled\": true\n    },\n    \"description\": {\n        \"descriptions\": [\"Sample Description 1\", \"Sample Description 2\"],\n        \"enabled\": true\n    },\n    \"tag\": {\n        \"tags\": [\"Tag1\", \"Tag2\"],\n        \"filter_match\": \"Has all of\",\n        \"enabled\": true\n    },\n    \"image\": {\n        \"status\": \"Doesnt have images\",\n        \"enabled\": false\n    }\n}",
+									"raw": "{\n    \"_id\": \"6516cb4f6c52dce0ab4c774a\",\n    \"limit\": 3,\n    \"repeat\": 1,\n    \"only_date_of_event\": true,\n    \"tittle\": {\n        \"tittles\": [\n            \"Sample Title 1\",\n            \"Sample Title 2\"\n        ],\n        \"enabled\": true\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -550,10 +546,13 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:3000/notification",
+									"raw": "http://139.59.95.44:3000/notification",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"139",
+										"59",
+										"95",
+										"44"
 									],
 									"port": "3000",
 									"path": [
@@ -589,15 +588,18 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTkxMjMwNiwiZXhwIjoxNjk1OTE5NTA2fQ.sOzQ22cvu7FDtS-qV18WIh5BYdjIMnmitvlImCoQwWQ",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjYyOSwiZXhwIjoxNjk1OTk5ODI5fQ.5JfsqkyVo8QzgF5vo_y6moeNbmokPcSFW4d9vwwyiRw",
 										"type": "text"
 									}
 								],
 								"url": {
-									"raw": "http://localhost:3000/notification",
+									"raw": "http://139.59.95.44:3000/notification",
 									"protocol": "http",
 									"host": [
-										"localhost"
+										"139",
+										"59",
+										"95",
+										"44"
 									],
 									"port": "3000",
 									"path": [

@@ -18,6 +18,7 @@ const createMemory = async (req, res) => {
                 status: 0,
             });
         const images = fileToBuffer(files);
+        console.log(images);
         const finalTags = getTags(tags);
         await Memory.create({
             belongs_to: email,
@@ -64,14 +65,14 @@ const updateMemory = async (req, res) => {
                 belongs_to: email,
             },
             {
+                $push: { image: images, },
                 $set: {
                     tittle,
                     description,
                     tags: finalTags,
                     event_date: dateOfEvent,
-                    image: images,
                 }
-            }
+            },
         );
         if (matchedCount == 0)
             return res.status(404).json({
@@ -79,6 +80,17 @@ const updateMemory = async (req, res) => {
                 status: 0,
                 error: "Invalid memory id."
             });
+        const imagesToRemove = body["imgToRemove"];
+        if(imagesToRemove) {
+            let memory = await Memory.findOne({
+                _id: id,
+                belongs_to: email,
+            });
+            if(memory["image"].length > 0) {
+                memory["image"] = memory["image"].filter(image => (imagesToRemove.indexOf(image["name"]) < 0));
+                await memory.save();
+            }
+        }
         return res.status(201).json({
             message: "Successfully updated Memory...",
             status: 1,
@@ -190,7 +202,7 @@ const getTagsSuggestion = async (req, res) => {
                     suggestions.push(tag);
             });
         });
-        if(name == "!0000" || suggestions.length == 0) {
+        if (name == "!0000" || suggestions.length == 0) {
             const foundMemory = await Memory.find({ belongs_to: email });
             foundMemory.map(memories => {
                 memories["tags"].map(tag => {

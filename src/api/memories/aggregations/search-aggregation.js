@@ -28,7 +28,26 @@ const search = async (email, searchString) => {
                     ]
                 },
             },
-        ]);
+        ]).then((result) => {
+            let returnValue = [];
+            for(let doc of result) {
+                if (doc) {
+                    if (doc["image"]) {
+                        let images = [];
+                        for (let image of doc["image"]) {
+                            // console.log(image);
+                            // const binaryDataBuffer = Buffer.from(image["data"], "base64");
+                            // image["data"] = binaryDataBuffer.buffer;
+                            // console.log("===?>", image["data"].toString("ascii"));
+                            images.push(image);
+                        }
+                        doc["image"] = images;
+                    }
+                    returnValue.push(doc);
+                }
+            }
+            return returnValue;
+        });
         return data;
     } catch (e) {
         console.log(e);
@@ -82,10 +101,10 @@ const getEventByDate = async (targetDay, targetMonth) => {
             },
             {
                 $lookup: {
-                  from          : 'users',
-                  localField    : 'belongs_to',
-                  foreignField  : 'email',
-                  as            : 'userData'
+                    from: 'users',
+                    localField: 'belongs_to',
+                    foreignField: 'email',
+                    as: 'userData'
                 },
             },
             {
