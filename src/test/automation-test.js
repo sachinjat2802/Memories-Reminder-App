@@ -3,5 +3,11 @@ const { getTodaysEvent, sendNotification } = require("../services/automation-ser
 
 const DB_URL = "mongodb://docker:mongopw@localhost:55000";
 mongooseConnect(DB_URL);
-// getTodaysEvent();
-sendNotification();
+
+const main = async () => {
+    const data = await sendNotification();
+    console.log(data);
+    process.exit(0);
+}
+main();
+// sendNotification();

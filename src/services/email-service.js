@@ -20,7 +20,7 @@ const generateOTP = () => {
     return fourDigitNumber;
 }
 
-const sendMail = (to, subject, body) => {
+const sendMail = async (to, subject, body) => {
     try {
         const mailBody = {
             from: MAILID,
@@ -28,14 +28,15 @@ const sendMail = (to, subject, body) => {
             subject,
             text: body,
         };
-        transporter.sendMail(mailBody, (error, info) => {
-            if (error) {
-                console.info(`Error sending mail to user ${to}`);
-                console.log(error);
-            } else {
-                console.info(`mail sent to user ${to}`);
-            }
-        });
+        // transporter.sendMail(mailBody, (error, info) => {
+        //     if (error) {
+        //         console.info(`Error sending mail to user ${to}`);
+        //         console.log(error);
+        //     } else {
+        //         console.info(`mail sent to user ${to}`);
+        //     }
+        // });
+        await transporter.sendMail(mailBody)
     } catch (e) {
         console.log(e);
     }

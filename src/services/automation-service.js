@@ -7,28 +7,114 @@ const date = new Date();
 const sendNotification = async () => {
     let uniqueMailId = [];
     const todaysEvent = await getTodaysEvent();
-    const todaysDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${(date.getDate()).toString().padStart(2, "0")}`;
 
-    for(const event of todaysEvent) {
-        const reciptant = event["belongs_to"];
-        if(!uniqueMailId.includes(reciptant)) {
-            sendMail(reciptant, `Remainder of ${event["tittle"]}`, `Hi ${event["userData"][0]["name"]} This is to notify about "${event["description"]}". `);
-            await Memory.updateOne(
-                { _id: event["_id"] },
-                {
-                    $set: {
-                        last_notification_sent: new Date(todaysDate),
+    for (const event of todaysEvent) {
+        for (let notifi of event["notification"]) {
+            if (notifi["tittle"]) {
+                if (notifi["tittle"]["tittles"]) {
+                    console.log(notifi["tittle"]["tittles"], event["tittle"]);
+                    if (notifi["tittle"]["tittles"].indexOf(event["tittle"]) > -1 && notifi["tittle"]["enabled"]) {
+                        await sendEventMail(event);
                     }
                 }
-            );
-            uniqueMailId.push(reciptant);
+            }
+
+            if (notifi["description"]) {
+                if (notifi["description"]["descriptions"]) {
+                    console.log(notifi["description"]["descriptions"], event["description"]);
+                    if (notifi["description"]["descriptions"].indexOf(event["description"]) > -1 && notifi["description"]["enabled"]) {
+                        await sendEventMail(event);
+                    }
+                }
+            }
+
+            if (notifi["image"]) {
+                if (notifi["image"]["enabled"]) {
+                    if (notifi["image"]["status"] == "Has images") {
+                        if (event["image"] && event["image"].length > 0) {
+                            console.log("====>", notifi["image"], event["image"].length);
+                            await sendEventMail(event);
+                        }
+                    }
+                    if (notifi["image"]["status"] == "Doesnt have images") {
+                        if (event["image"] && event["image"].length == 0) {
+                            console.log("jnjknkjnkjhjhj", notifi["image"], event);
+                            await sendEventMail(event);
+                        }
+                    }
+                }
+            }
+
+            if (notifi["tag"]) {
+                if (notifi["tag"]["tags"] && notifi["tag"]["enabled"]) {
+                    console.log(notifi["tag"]["tags"], event["tags"]);
+                    if (notifi["tag"]["filter_match"] == "Has all of") {
+                        if (notifi["tag"]["tags"].every(item => event["tags"].includes(item))) {
+                            await sendEventMail(event);
+                        }
+                    }
+
+                    if (notifi["tag"]["filter_match"] == "Has exactly") {
+                        if (arraysHaveExactMatch(notifi["tag"]["tags"], event["tags"])) {
+                            await sendEventMail(event);
+                        }
+                    }
+
+                    if (notifi["tag"]["filter_match"] == "Has any of") {
+                        if (arraysHasAnyOf(notifi["tag"]["tags"], event["tags"])) {
+                            await sendEventMail(event);
+                        }
+                    }
+                }
+            }
         }
     };
 }
 
+const sendEventMail = async (event) => {
+    console.log(event);
+    const reciptant = event["belongs_to"];
+    const todaysDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${(date.getDate()).toString().padStart(2, "0")}`;
+    // if (!uniqueMailId.includes(reciptant)) {
+    await sendMail(reciptant, `Remainder of ${event["tittle"]}`, `This is to notify about "${event["tittle"]}". `);
+    await Memory.updateOne(
+        { _id: event["_id"] },
+        {
+            $set: {
+                last_notification_sent: new Date(todaysDate),
+            }
+        }
+    );
+    return reciptant;
+    // uniqueMailId.push(reciptant);
+    // }
+}
+
 const getTodaysEvent = async () => {
     const events = await searchAggregations.getEventByDate(date.getDate(), date.getMonth() + 1);
+    console.log(events);
     return events;
+}
+
+function arraysHaveExactMatch(arr1, arr2) {
+    // Check if the arrays have the same length
+    if (arr1.length !== arr2.length) {
+        return false;
+    }
+
+    // Use the every() method to compare elements
+    return arr1.every((element, index) => element === arr2[index]);
+}
+
+function arraysHasAnyOf(arr1, arr2) {
+    for (const element1 of arr1) {
+        for (const element2 of arr2) {
+            if (element1 === element2) {
+                return true; // Found a matching element
+            }
+        }
+    }
+    return false; // No matching elements found
 }
 
 module.exports = {

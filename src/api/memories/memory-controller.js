@@ -18,7 +18,6 @@ const createMemory = async (req, res) => {
                 status: 0,
             });
         const images = fileToBuffer(files);
-        console.log(images);
         const finalTags = getTags(tags);
         await Memory.create({
             belongs_to: email,
@@ -87,7 +86,7 @@ const updateMemory = async (req, res) => {
                 belongs_to: email,
             });
             if(memory["image"].length > 0) {
-                memory["image"] = memory["image"].filter(image => (imagesToRemove.indexOf(image["name"]) < 0));
+                memory["image"] = memory["image"].filter(image => (imagesToRemove.indexOf(image["_id"]) < 0));
                 await memory.save();
             }
         }
