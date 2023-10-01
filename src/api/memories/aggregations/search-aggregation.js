@@ -136,14 +136,11 @@ const getEventByDate = async (targetDay, targetMonth) => {
                     as: 'notification'
                 },
             },
-            // {
-            //     $match: {
-            //         'notification.only_date_of_event': true,
-            //         'notification.tittle.tittles': {
-            //             $elemMatch: { $eq: '$tittle' },
-            //         },
-            //     },
-            // },
+            {
+                $match: {
+                    'notification.only_date_of_event': true,
+                },
+            },
             {
                 $project: {
                     // image: 0,
@@ -171,8 +168,74 @@ const getEventByDate = async (targetDay, targetMonth) => {
     }
 }
 
+
+const getRestOfEvents = async (targetDay, targetMonth) => {
+    try {
+        const events = await Memory.aggregate([
+            {
+                $match: {
+                    $expr: {
+                        $and: [
+                            { $ne: [{ $month: '$event_date' }, targetMonth] },
+                            { $ne: [{ $dayOfMonth: '$event_date' }, targetDay] },
+                        ]
+                    }
+                }
+            },
+            {
+                $lookup: {
+                    from: 'users',
+                    localField: 'belongs_to',
+                    foreignField: 'email',
+                    as: 'userData'
+                },
+            },
+            {
+                $match: {
+                    "userData.enabled_notification": true,
+                }
+            },
+            {
+                $lookup: {
+                    from: 'notifications',
+                    localField: 'belongs_to',
+                    foreignField: 'belongs_to',
+                    as: 'notification',
+                },
+            },
+            {
+                $match: {
+                    'notification.only_date_of_event': false,
+                },
+            },
+            {
+                $project: {
+                    tittle: 1,
+                    belongs_to: 1,
+                    description: 1,
+                    tags: 1,
+                    image: { $size: "$image" },
+                    last_notification_sent: 1,
+                    "notification.limit": 1,
+                    "notification.repeat": 1,
+                    "notification.image": 1,
+                    "notification.tag": 1,
+                    "notification.tittle": 1,
+                    "notification.description": 1,
+                    "notification.limit": 1,
+                }
+            },
+        ]);
+        return events;
+    } catch (e) {
+        console.log(e);
+        throw e;
+    }
+}
+
 module.exports = {
     search,
     getTags,
     getEventByDate,
+    getRestOfEvents,
 };

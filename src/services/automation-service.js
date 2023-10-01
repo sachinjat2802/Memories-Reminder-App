@@ -6,8 +6,79 @@ const date = new Date();
 
 const sendNotification = async () => {
     let uniqueMailId = [];
-    const todaysEvent = await getTodaysEvent();
+    const notTodaysEvent = await getEventExceptTodays();
 
+    for (const event of notTodaysEvent) {
+        for (const notifi of event["notification"]) {
+            if (event["last_notification_sent"]) {
+                const diff = calculateDateDifference(event["last_notification_sent"]);
+                const repeat = notifi["repeat"];
+                if (diff > (repeat - 1)) {
+                    if (notifi["tittle"]) {
+                        if (notifi["tittle"]["tittles"]) {
+                            console.log(notifi["tittle"]["tittles"], event["tittle"]);
+                            if (notifi["tittle"]["tittles"].indexOf(event["tittle"]) > -1 && notifi["tittle"]["enabled"]) {
+                                await sendEventMail(event);
+                            }
+                        }
+                    }
+
+                    if (notifi["description"]) {
+                        if (notifi["description"]["descriptions"]) {
+                            console.log(notifi["description"]["descriptions"], event["description"]);
+                            if (notifi["description"]["descriptions"].indexOf(event["description"]) > -1 && notifi["description"]["enabled"]) {
+                                await sendEventMail(event);
+                            }
+                        }
+                    }
+
+                    if (notifi["image"]) {
+                        if (notifi["image"]["enabled"]) {
+                            if (notifi["image"]["status"] == "Has images") {
+                                if (event["image"] && event["image"].length > 0) {
+                                    console.log("====>", notifi["image"], event["image"].length);
+                                    await sendEventMail(event);
+                                }
+                            }
+                            if (notifi["image"]["status"] == "Doesnt have images") {
+                                if (event["image"] && event["image"].length == 0) {
+                                    console.log("jnjknkjnkjhjhj", notifi["image"], event);
+                                    await sendEventMail(event);
+                                }
+                            }
+                        }
+                    }
+
+                    if (notifi["tag"]) {
+                        if (notifi["tag"]["tags"] && notifi["tag"]["enabled"]) {
+                            console.log(notifi["tag"]["tags"], event["tags"]);
+                            if (notifi["tag"]["filter_match"] == "Has all of") {
+                                if (notifi["tag"]["tags"].every(item => event["tags"].includes(item))) {
+                                    await sendEventMail(event);
+                                }
+                            }
+
+                            if (notifi["tag"]["filter_match"] == "Has exactly") {
+                                if (arraysHaveExactMatch(notifi["tag"]["tags"], event["tags"])) {
+                                    await sendEventMail(event);
+                                }
+                            }
+
+                            if (notifi["tag"]["filter_match"] == "Has any of") {
+                                if (arraysHasAnyOf(notifi["tag"]["tags"], event["tags"])) {
+                                    await sendEventMail(event);
+                                }
+                            }
+                        }
+                    }
+                }
+            } else {
+                await sendEventMail(event);
+            }
+        }
+    }
+
+    const todaysEvent = await getTodaysEvent();
     for (const event of todaysEvent) {
         for (let notifi of event["notification"]) {
             if (notifi["tittle"]) {
@@ -92,7 +163,11 @@ const sendEventMail = async (event) => {
 
 const getTodaysEvent = async () => {
     const events = await searchAggregations.getEventByDate(date.getDate(), date.getMonth() + 1);
-    console.log(events);
+    return events;
+}
+
+const getEventExceptTodays = async () => {
+    const events = await searchAggregations.getRestOfEvents(date.getDate(), date.getMonth() + 1);
     return events;
 }
 
@@ -117,7 +192,24 @@ function arraysHasAnyOf(arr1, arr2) {
     return false; // No matching elements found
 }
 
+function calculateDateDifference(dateString) {
+    // Convert the input date string to a Date object
+    const inputDate = new Date(dateString);
+
+    // Get the current date
+    const currentDate = new Date();
+
+    // Calculate the time difference in milliseconds
+    const timeDifference = inputDate - currentDate;
+
+    // Calculate the difference in days
+    const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+    return daysDifference;
+}
+
 module.exports = {
     getTodaysEvent,
+    getEventExceptTodays,
     sendNotification,
 }
