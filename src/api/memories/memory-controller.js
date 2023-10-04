@@ -246,7 +246,7 @@ const deleteMemory = async (req, res) => {
         const { email } = user;
         const { id } = params;
         await Memory.deleteOne({ belongs_to: email, _id: id }); 
-        return res.status(100).json({
+        return res.status(200).json({
             message: "Memory Deleted.",
             status: 1,
         });

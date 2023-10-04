@@ -1,10 +1,11 @@
 const express = require('express');
 const { authorizationService } = require("../../services");
-const { createMemory, updateMemory, getAllMemories, getAMemory, getAllMemoriesSorted, searchMemory, getTagsSuggestion } = require("./memory-controller");
+const { createMemory, updateMemory, getAllMemories, getAMemory, getAllMemoriesSorted, searchMemory, getTagsSuggestion, deleteMemory } = require("./memory-controller");
 const router = express.Router();
 
 router.get("/", authorizationService.authenticateUser, getAllMemories);
 router.get("/:id", authorizationService.authenticateUser, getAMemory);
+router.delete("/:id", authorizationService.authenticateUser, deleteMemory);
 router.get("/tag/:name", authorizationService.authenticateUser, getTagsSuggestion);
 router.get("/sort/:sortBy", authorizationService.authenticateUser, getAllMemoriesSorted);
 router.get("/search/:searchText", authorizationService.authenticateUser, searchMemory);
