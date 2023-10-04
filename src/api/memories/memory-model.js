@@ -21,7 +21,7 @@ const memory = new Schema({
     },
     image: [{
         name: String,
-        data: Buffer,
+        path: String,
         contentType: String,
     }],
     event_date: {

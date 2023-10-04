@@ -1,5 +1,5 @@
 const Memory = require("./memory-model");
-const { validationService } = require("../../services");
+const { validationService, fileService } = require("../../services");
 const { searchAggregations, sortingAggregations } = require("./aggregations");
 
 const createMemory = async (req, res) => {
@@ -17,7 +17,7 @@ const createMemory = async (req, res) => {
                 message: "Enter an valid email address...",
                 status: 0,
             });
-        const images = fileToBuffer(files);
+        const images = await fileToBuffer(files);
         const finalTags = getTags(tags);
         await Memory.create({
             belongs_to: email,
@@ -45,7 +45,7 @@ const updateMemory = async (req, res) => {
     try {
         const { user, files, body } = req;
         const { email } = user;
-        const { id, tittle, description, tags = [], dateOfEvent } = body;
+        const { id, tittle, description, tags = [], dateOfEvent, imgToRemove } = body;
         if (!id || !description)
             return res.status(400).json({
                 message: "Enter id, description",
@@ -56,7 +56,7 @@ const updateMemory = async (req, res) => {
                 message: "Enter an valid email address...",
                 status: 0,
             });
-        const images = fileToBuffer(files);
+        const images = await fileToBuffer(files);
         const finalTags = getTags(tags);
         const { matchedCount } = await Memory.updateOne(
             {
@@ -79,14 +79,25 @@ const updateMemory = async (req, res) => {
                 status: 0,
                 error: "Invalid memory id."
             });
-        const imagesToRemove = body["imgToRemove"];
-        if(imagesToRemove) {
+        if (imgToRemove) {
             let memory = await Memory.findOne({
                 _id: id,
                 belongs_to: email,
             });
-            if(memory["image"].length > 0) {
-                memory["image"] = memory["image"].filter(image => (imagesToRemove.indexOf(image["_id"]) < 0));
+            if (memory["image"].length > 0) {
+                memory["image"] = memory["image"].filter((image) => {
+                    console.log(imgToRemove.indexOf(image["_id"]) < 0);
+                    if (imgToRemove.indexOf(image["_id"]) < 0)
+                        return true;
+                    else {
+                        try {
+                            fileService.deleteAFileFromPath(image["path"]);
+                        } catch (e) {
+                            console.log(e);
+                        }
+                        return false;
+                    }
+                });
                 await memory.save();
             }
         }
@@ -108,10 +119,12 @@ const getAllMemories = async (req, res) => {
     try {
         const { email } = req.user;
         const memories = await Memory.find({ belongs_to: email });
+        const data = await memoriesImagesConverter(memories);
+        console.log(JSON.stringify(data));
         return res.status(200).json({
             message: "Here are your memories...",
             status: 1,
-            data: memories,
+            data,
         });
     } catch (e) {
         console.log(e);
@@ -154,10 +167,11 @@ const searchMemory = async (req, res) => {
         const { email } = req.user;
         const { searchText } = req.params;
         const data = await searchAggregations.search(email, searchText);
+        const memories = await memoriesImagesConverter(data);
         return res.status(200).json({
             message: "Here are your memories...",
             status: 1,
-            data,
+            data: memories,
         });
     } catch (e) {
         console.log(e);
@@ -174,10 +188,11 @@ const getAMemory = async (req, res) => {
         const { email } = req.user;
         const { id } = req.params;
         const memories = await Memory.find({ _id: id, belongs_to: email });
+        const data = await memoriesImagesConverter(memories);
         return res.status(200).json({
             message: "Here is your memory...",
             status: 1,
-            data: memories,
+            data,
         });
     } catch (e) {
         console.log(e);
@@ -226,26 +241,66 @@ const getTagsSuggestion = async (req, res) => {
 }
 
 //////////////////////////// Helper Functions
-const fileToBuffer = (files) => {
+const fileToBuffer = async (files) => {
     var images = [];
     if (files) {
         const inCommingFile = files["file"];
         const isArray = Array.isArray(inCommingFile);
         if (isArray)
-            for (const file of inCommingFile)
+            for (const file of inCommingFile) {
+                const storedPath = await fileService.saveBufferToDisk(Buffer.from(file.data), file.name);
                 images.push({
                     name: file.name,
-                    data: Buffer.from(file.data),
+                    path: storedPath,
                     contentType: "image/jpeg",
                 });
-        else
+            }
+        else {
+            const storedPath = await fileService.saveBufferToDisk(Buffer.from(inCommingFile.data), inCommingFile.name);
+            console.log("storedPath: ", storedPath);
             images.push({
                 name: inCommingFile.name,
-                data: Buffer.from(inCommingFile.data),
+                path: storedPath,
                 contentType: "image/jpeg",
             });
+        }
     };
     return images;
+}
+
+const dbImageToFileBuffer = async (dbImages) => {
+    let images = [];
+    if (dbImages) {
+        for (const image of dbImages) {
+            const buffer = await fileService.readFileToBuffer(image.path);
+            images.push({
+                _id: image["_id"],
+                name: image.name,
+                data: buffer.toString('base64'),
+                contentType: image.contentType,
+            });
+        }
+    }
+    return images;
+}
+
+const memoriesImagesConverter = async (memories) => {
+    var returnMemories = [];
+    if (memories) {
+        for (let memory of memories) {
+            const images = await dbImageToFileBuffer(memory["image"]);
+            returnMemories.push({
+                _id: memory["_id"],
+                belongs_to: memory["belongs_to"],
+                tittle: memory["tittle"],
+                description: memory["description"],
+                tags: memory["tags"],
+                event_date: memory["event_date"],
+                image: images,
+            });
+        }
+    }
+    return returnMemories;
 }
 
 const getTags = (tags) => {
@@ -266,5 +321,6 @@ module.exports = {
 
     //////////////////////////// Helper Functions
     fileToBuffer,
+    dbImageToFileBuffer,
     getTags,
 }

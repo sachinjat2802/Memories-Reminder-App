@@ -24,7 +24,7 @@ const user = new Schema({
     },
     profilePicture: {
         name: String,
-        data: Buffer,
+        path: String,
         contentType: String,
     },
     is_loggedin: {

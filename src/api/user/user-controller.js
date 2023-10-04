@@ -1,6 +1,7 @@
 const { hash, compare } = require("bcrypt");
 const User = require("./user-model");
 const Memory = require("../memories/memory-model");
+const { fileToBuffer, dbImageToFileBuffer } = require("../memories/memory-controller");
 const { emailService, validationService, authorizationService } = require("../../services");
 
 const signUpWithOTP = async (req, res) => {
@@ -209,11 +210,7 @@ const completeProfile = async (req, res) => {
 
         var profilePicture;
         if (files)
-            profilePicture = {
-                name: files.file.name,
-                data: Buffer.from(files.file.data),
-                contentType: "image/jpeg",
-            };
+            profilePicture = await fileToBuffer(files) ;
         try {
             await User.updateOne(
                 { email },
@@ -221,7 +218,7 @@ const completeProfile = async (req, res) => {
                     $set: {
                         name,
                         dob,
-                        profilePicture,
+                        profilePicture: profilePicture[0],
                     }
                 }
             );
@@ -324,6 +321,7 @@ const getUserProfile = async (req, res) => {
     try {
         const { email } = req.user;
         const foundUser = await User.findOne({ email });
+        const image = await dbImageToFileBuffer([foundUser["profilePicture"]]);
         if (!foundUser)
             return res.status(404).json({
                 message: "User not found.",
@@ -332,7 +330,18 @@ const getUserProfile = async (req, res) => {
         return res.status(200).json({
             message: "The user profile retrived.",
             status: 1,
-            data: foundUser,
+            data: {
+                "profilePicture": image[0],
+                "_id": foundUser["_id"],
+                "email": foundUser["email"],
+                "createdAt": foundUser["createdAt"],
+                "enabled_notification": foundUser["enabled_notification"],
+                "isDeleted": foundUser["isDeleted"],
+                "is_loggedin": foundUser["is_loggedin"],
+                "updatedAt": foundUser["updatedAt"],
+                "dob": foundUser["dob"],
+                "name": foundUser["name"]
+            },
         });
     } catch (e) {
         console.log(e);
