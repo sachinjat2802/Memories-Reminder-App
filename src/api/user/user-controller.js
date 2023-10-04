@@ -209,8 +209,10 @@ const completeProfile = async (req, res) => {
             });
 
         var profilePicture;
-        if (files)
-            profilePicture = await fileToBuffer(files) ;
+        if (files) {
+            profilePicture = await fileToBuffer(files);
+            profilePicture = profilePicture[0];
+        }
         try {
             await User.updateOne(
                 { email },
@@ -218,7 +220,7 @@ const completeProfile = async (req, res) => {
                     $set: {
                         name,
                         dob,
-                        profilePicture: profilePicture[0],
+                        profilePicture,
                     }
                 }
             );
