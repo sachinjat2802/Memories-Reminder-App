@@ -1,6 +1,7 @@
 const mongooseConnect = require("./mongoose-config");
 const DB_NAME = "memories";
 module.exports = {
+    HOST: process.env.HOST || "http://139.59.95.44",
     PORT: process.env.PORT || 3000,
     MAILID: process.env.MAILID || 'dummypurposepvt@gmail.com',
     MAIL_PASSWORD: process.env.MAIL_PASSWORD || 'zwegashxkjmcjwrp',

@@ -14,6 +14,7 @@ const automate = require("./services/automation-service");
 
 mongooseConnect(DB_URL);
 const app = express();
+app.use(express.static('files'));
 app.use(cors());
 app.use(expressFileUpload());
 app.use(bodyParser.json());

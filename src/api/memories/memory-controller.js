@@ -276,7 +276,7 @@ const dbImageToFileBuffer = async (dbImages) => {
             images.push({
                 _id: image["_id"],
                 name: image.name,
-                data: buffer.toString('base64'),
+                data: buffer,
                 contentType: image.contentType,
             });
         }

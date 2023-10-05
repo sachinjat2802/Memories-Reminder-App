@@ -1,11 +1,13 @@
 const fs = require('fs/promises');
 const filesys = require("fs");
 const path = require('path');
+const { PORT, HOST } = require('../config');
 
 const readFileToBuffer = async (filePath) => {
     try {
-        const buffer = await fs.readFile(filePath);
-        return buffer;
+        // const buffer = await fs.readFile(filePath);
+
+        return `${HOST}:${PORT}/${filePath}`;
     } catch (error) {
         throw error;
     }
@@ -22,7 +24,7 @@ const saveBufferToDisk = async (buffer, defaultFileName) => {
         // Write the buffer to the file
         await fs.writeFile(filePath, buffer);
 
-        return filePath;
+        return fileName;
     } catch (error) {
         console.log(error);
         throw error;
