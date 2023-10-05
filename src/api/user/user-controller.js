@@ -209,8 +209,10 @@ const completeProfile = async (req, res) => {
             });
 
         var profilePicture;
-        if (files)
-            profilePicture = await fileToBuffer(files) ;
+        if (files) {
+            profilePicture = await fileToBuffer(files);
+            profilePicture = profilePicture[0];
+        }
         try {
             await User.updateOne(
                 { email },
@@ -218,7 +220,7 @@ const completeProfile = async (req, res) => {
                     $set: {
                         name,
                         dob,
-                        profilePicture: profilePicture[0],
+                        profilePicture,
                     }
                 }
             );
@@ -321,7 +323,12 @@ const getUserProfile = async (req, res) => {
     try {
         const { email } = req.user;
         const foundUser = await User.findOne({ email });
-        const image = await dbImageToFileBuffer([foundUser["profilePicture"]]);
+        var image;
+        if(foundUser["profilePicture"]["name"]) {
+            image = await dbImageToFileBuffer([foundUser["profilePicture"]]);
+            image = image[0];
+            console.log(image);
+        }
         if (!foundUser)
             return res.status(404).json({
                 message: "User not found.",
@@ -331,7 +338,7 @@ const getUserProfile = async (req, res) => {
             message: "The user profile retrived.",
             status: 1,
             data: {
-                "profilePicture": image[0],
+                "profilePicture": image,
                 "_id": foundUser["_id"],
                 "email": foundUser["email"],
                 "createdAt": foundUser["createdAt"],

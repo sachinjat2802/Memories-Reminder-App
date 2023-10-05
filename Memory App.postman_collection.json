@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"noreply.connectverse@gmail.com\"\n}",
+							"raw": "{\n    \"email\": \"smnavin65@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -74,7 +74,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"noreply.connectverse@gmail.com\",\n    \"password\": \"navin\"\n}",
+							"raw": "{\n    \"email\": \"smnavin92@gmail.com\",\n    \"password\": \"navin\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -107,7 +107,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"pec@gmail.com\"\n}",
+							"raw": "{\n    \"email\": \"smnavin65@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -115,13 +115,9 @@
 							}
 						},
 						"url": {
-							"raw": "http://139.59.95.44:3000/user/oauth",
-							"protocol": "http",
+							"raw": "localhost:3000/user/oauth",
 							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
+								"localhost"
 							],
 							"port": "3000",
 							"path": [
@@ -144,7 +140,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTM5MzIzMywiZXhwIjoxNjk1Mzk2ODMzfQ.XsajDP5VnN8V9IgTy0SNfeFnOQTaG-NXyx22HwIYUlM",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW45MkBnbWFpbC5jb20iLCJpYXQiOjE2OTY0Mjg1OTIsImV4cCI6MTY5NjQzNTc5Mn0.zLtEcNNzADgHkNsuiDPsRCPqYqhte9oIZ2ImRDfYA7g",
 								"type": "text"
 							}
 						],
@@ -164,8 +160,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": [],
-									"disabled": true
+									"src": "/C:/Users/admin/Pictures/Camera Roll/WIN_20221015_11_41_14_Pro.jpg"
 								}
 							]
 						},
@@ -230,14 +225,18 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTkxNjI0MiwiZXhwIjoxNjk1OTIzNDQyfQ.g5FF2g3ezWWQ9ZECMxPiBkJPhSjtI5p_g9XSzQ9nbYY",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW45MkBnbWFpbC5jb20iLCJpYXQiOjE2OTY0Mjg1OTIsImV4cCI6MTY5NjQzNTc5Mn0.zLtEcNNzADgHkNsuiDPsRCPqYqhte9oIZ2ImRDfYA7g",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "localhost:3000/user/profile",
+							"raw": "http://139.59.95.44:3000/user/profile",
+							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -285,7 +284,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjkxNywiZXhwIjoxNjk2MDAwMTE3fQ.D3XS-jFkMDwb-WD7mJUyyO46nzeevS3dAwcOI50bLfk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTYzMzY0MzksImV4cCI6MTY5NjM0MzYzOX0.vonymFh5dsSNy3MXsIviQpl1kJaOJRGoaQfQ5_qOTOM",
 								"type": "text"
 							}
 						],
@@ -312,7 +311,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjkxNywiZXhwIjoxNjk2MDAwMTE3fQ.D3XS-jFkMDwb-WD7mJUyyO46nzeevS3dAwcOI50bLfk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW45MkBnbWFpbC5jb20iLCJpYXQiOjE2OTY0Mjg1OTIsImV4cCI6MTY5NjQzNTc5Mn0.zLtEcNNzADgHkNsuiDPsRCPqYqhte9oIZ2ImRDfYA7g",
 								"type": "text"
 							}
 						],
@@ -322,7 +321,8 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/navindurai/Downloads/loga-github.jpeg"
+									"src": "/Users/navindurai/Downloads/loga-github.jpeg",
+									"disabled": true
 								},
 								{
 									"key": "tittle",
@@ -347,7 +347,12 @@
 								},
 								{
 									"key": "dateOfEvent",
-									"value": "2023-09-12",
+									"value": "2023-09-30",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "[\"Redmi K20 Last Moments.png\"]",
 									"type": "text",
 									"disabled": true
 								}
@@ -375,15 +380,18 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjkxNywiZXhwIjoxNjk2MDAwMTE3fQ.D3XS-jFkMDwb-WD7mJUyyO46nzeevS3dAwcOI50bLfk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW45MkBnbWFpbC5jb20iLCJpYXQiOjE2OTY0Mjg1OTIsImV4cCI6MTY5NjQzNTc5Mn0.zLtEcNNzADgHkNsuiDPsRCPqYqhte9oIZ2ImRDfYA7g",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/memory",
+							"raw": "http://139.59.95.44:3000/memory",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -400,12 +408,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTMwNjcwNDQsImV4cCI6MTY5MzA3MDY0NH0.L_oEdZxFN4yRloLGY9eCUYLx0ftofP-egkTtZlPW8Ys",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NjA0NTAwOCwiZXhwIjoxNjk2MDUyMjA4fQ.tRV-8blppA3oZxl2Ed9n7dUiiuqwmoGuFIUQYiGmoyU",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/memory/64e9b15fc5b424aca7f8c3f3",
+							"raw": "http://localhost:3000/memory/6516cd05a81eeefe5236a5f0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -413,7 +421,7 @@
 							"port": "3000",
 							"path": [
 								"memory",
-								"64e9b15fc5b424aca7f8c3f3"
+								"6516cd05a81eeefe5236a5f0"
 							]
 						}
 					},
@@ -426,7 +434,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5ODQzMywiZXhwIjoxNjk2MDA1NjMzfQ.k0PX75RM7Jn1XpEXTSZn6Tj1iD1qL5I8Db3bbxAQM08",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW42NUBnbWFpbC5jb20iLCJpYXQiOjE2OTYzNDczMTYsImV4cCI6MTY5NjM1NDUxNn0.amP3cEhb7XNPal-O3TmDlMMNT-04gUCSh4O8qKxlHSc",
 								"type": "text"
 							}
 						],
@@ -435,7 +443,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "6516cd05a81eeefe5236a5f0",
+									"value": "651c35985adcd6dafada74ed",
 									"type": "text"
 								},
 								{
@@ -457,7 +465,8 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/Users/navindurai/Downloads/loga-github.jpeg"
+									"src": "/D:/Navin/Resumes/Navin Resume Natwest.pdf",
+									"disabled": true
 								},
 								{
 									"key": "dateOfEvent",
@@ -467,16 +476,19 @@
 								},
 								{
 									"key": "imgToRemove",
-									"value": "[\"Screenshot from 2023-07-27 12-52-11.png\"]",
+									"value": "[\"651c20703bd44978a84475e1\"]",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/memory/update",
+							"raw": "http://139.59.95.44:3000/memory/update",
 							"protocol": "http",
 							"host": [
-								"localhost"
+								"139",
+								"59",
+								"95",
+								"44"
 							],
 							"port": "3000",
 							"path": [
@@ -516,6 +528,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete Memory",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNtbmF2aW45MkBnbWFpbC5jb20iLCJpYXQiOjE2OTY0Mjg1OTIsImV4cCI6MTY5NjQzNTc5Mn0.zLtEcNNzADgHkNsuiDPsRCPqYqhte9oIZ2ImRDfYA7g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/memory/651d7595c0b1eb87dbbbf186",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"memory",
+								"651d7595c0b1eb87dbbbf186"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -532,13 +570,13 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTk5MjYyOSwiZXhwIjoxNjk1OTk5ODI5fQ.5JfsqkyVo8QzgF5vo_y6moeNbmokPcSFW4d9vwwyiRw",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NjE0MDc4MywiZXhwIjoxNjk2MTQ3OTgzfQ.ydMfAsF7ah_P3pUgB0aE_LC7cVT9gs3sA1dOcenhQwg",
 										"type": "text"
 									}
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"_id\": \"6516cb4f6c52dce0ab4c774a\",\n    \"limit\": 3,\n    \"repeat\": 1,\n    \"only_date_of_event\": true,\n    \"tittle\": {\n        \"tittles\": [\n            \"Sample Title 1\",\n            \"Sample Title 2\"\n        ],\n        \"enabled\": true\n    }\n}",
+									"raw": "{\n    \"limit\": 3,\n    \"repeat\": 1,\n    \"only_date_of_event\": true,\n    \"image\": {\n        \"status\": \"Doesnt have images\",\n        \"enabled\": true\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -546,13 +584,9 @@
 									}
 								},
 								"url": {
-									"raw": "http://139.59.95.44:3000/notification",
-									"protocol": "http",
+									"raw": "localhost:3000/notification",
 									"host": [
-										"139",
-										"59",
-										"95",
-										"44"
+										"localhost"
 									],
 									"port": "3000",
 									"path": [
@@ -670,7 +704,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NTQ5MDQwOSwiZXhwIjoxNjk1NDk0MDA5fQ.85xJzSLpwHmaUKWbXA05WhSk80tKKAVwGzdY9RH2jb4",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vcmVwbHkuY29ubmVjdHZlcnNlQGdtYWlsLmNvbSIsImlhdCI6MTY5NjA1MzQwNSwiZXhwIjoxNjk2MDYwNjA1fQ.TA2eg_kw00WA2d9KDTHXi1QmfwQn4vmAL0QaPoJmyjs",
 								"type": "text"
 							}
 						],

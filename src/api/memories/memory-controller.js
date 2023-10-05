@@ -240,6 +240,26 @@ const getTagsSuggestion = async (req, res) => {
     }
 }
 
+const deleteMemory = async (req, res) => {
+    try {
+        const { user, params } = req;
+        const { email } = user;
+        const { id } = params;
+        await Memory.deleteOne({ belongs_to: email, _id: id }); 
+        return res.status(200).json({
+            message: "Memory Deleted.",
+            status: 1,
+        });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({
+            message: "Something went wrong.",
+            status: 0,
+            error: e.message,
+        });
+    }
+}
+
 //////////////////////////// Helper Functions
 const fileToBuffer = async (files) => {
     var images = [];
@@ -318,6 +338,7 @@ module.exports = {
     searchMemory,
     getAMemory,
     getTagsSuggestion,
+    deleteMemory,
 
     //////////////////////////// Helper Functions
     fileToBuffer,
