@@ -33,7 +33,7 @@ const user = new Schema({
     },
     enabled_notification: {
         type: Boolean,
-        default: false,
+        default: true,
     },
     isDeleted: {
         type: Boolean,
