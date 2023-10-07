@@ -28,6 +28,11 @@ const memory = new Schema({
         type: Date,
         required: false,
     },
+    mails_count: {
+        type: Number,
+        required: true,
+        default: 0,
+    },
     last_notification_sent: {
         type: Date,
     },

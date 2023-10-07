@@ -210,12 +210,14 @@ const getRestOfEvents = async (targetDay, targetMonth) => {
             },
             {
                 $project: {
+                    _id: 1,
                     tittle: 1,
                     belongs_to: 1,
                     description: 1,
                     tags: 1,
                     image: { $size: "$image" },
                     last_notification_sent: 1,
+                    mails_count: 1,
                     "notification.limit": 1,
                     "notification.repeat": 1,
                     "notification.image": 1,

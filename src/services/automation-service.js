@@ -18,7 +18,9 @@ const sendNotification = async () => {
                         if (notifi["tittle"]["tittles"]) {
                             console.log(notifi["tittle"]["tittles"], event["tittle"]);
                             if (notifi["tittle"]["tittles"].indexOf(event["tittle"]) > -1 && notifi["tittle"]["enabled"]) {
-                                await sendEventMail(event);
+                                if(event["mails_count"] <= notifi["limit"]) {
+                                    await sendEventMail(event);
+                                }
                             }
                         }
                     }
@@ -27,7 +29,9 @@ const sendNotification = async () => {
                         if (notifi["description"]["descriptions"]) {
                             console.log(notifi["description"]["descriptions"], event["description"]);
                             if (notifi["description"]["descriptions"].indexOf(event["description"]) > -1 && notifi["description"]["enabled"]) {
-                                await sendEventMail(event);
+                                if(event["mails_count"] <= notifi["limit"]) {
+                                    await sendEventMail(event);
+                                }
                             }
                         }
                     }
@@ -37,13 +41,17 @@ const sendNotification = async () => {
                             if (notifi["image"]["status"] == "Has images") {
                                 if (event["image"] && event["image"].length > 0) {
                                     console.log("====>", notifi["image"], event["image"].length);
-                                    await sendEventMail(event);
+                                    if(event["mails_count"] <= notifi["limit"]) {
+                                        await sendEventMail(event);
+                                    }
                                 }
                             }
                             if (notifi["image"]["status"] == "Doesnt have images") {
                                 if (event["image"] && event["image"].length == 0) {
                                     console.log("jnjknkjnkjhjhj", notifi["image"], event);
-                                    await sendEventMail(event);
+                                    if(event["mails_count"] <= notifi["limit"]) {
+                                        await sendEventMail(event);
+                                    }
                                 }
                             }
                         }
@@ -54,28 +62,47 @@ const sendNotification = async () => {
                             console.log(notifi["tag"]["tags"], event["tags"]);
                             if (notifi["tag"]["filter_match"] == "Has all of") {
                                 if (notifi["tag"]["tags"].every(item => event["tags"].includes(item))) {
-                                    await sendEventMail(event);
+                                    if(event["mails_count"] <= notifi["limit"]) {
+                                        await sendEventMail(event);
+                                    }
                                 }
                             }
 
                             if (notifi["tag"]["filter_match"] == "Has exactly") {
                                 if (arraysHaveExactMatch(notifi["tag"]["tags"], event["tags"])) {
-                                    await sendEventMail(event);
+                                    if(event["mails_count"] <= notifi["limit"]) {
+                                        await sendEventMail(event);
+                                    }
                                 }
                             }
 
                             if (notifi["tag"]["filter_match"] == "Has any of") {
                                 if (arraysHasAnyOf(notifi["tag"]["tags"], event["tags"])) {
-                                    await sendEventMail(event);
+                                    if(event["mails_count"] <= notifi["limit"]) {
+                                        await sendEventMail(event);
+                                    }
                                 }
                             }
                         }
                     }
                 }
+                if (diff < repeat && notifi["limit"] > 0) {
+                    await Memory.findByOneAndUpdate(
+                        {
+                            _id: event["_id"],
+                        },
+                        {
+                            $set: {
+                                mails_count: 0,
+                            }
+                        }
+                    );
+                }
             } else {
                 await sendEventMail(event);
             }
         }
+        await sendIfNotSentToday(event);
     }
 
     const todaysEvent = await getTodaysEvent();
@@ -142,8 +169,17 @@ const sendNotification = async () => {
     };
 }
 
+const sendIfNotSentToday = async (memory) => {
+    try {
+        const diff = calculateDateDifference(memory["last_notification_sent"]);
+        if(diff > 0)
+            await sendEventMail(memory);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 const sendEventMail = async (event) => {
-    console.log(event);
     const reciptant = event["belongs_to"];
     const todaysDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${(date.getDate()).toString().padStart(2, "0")}`;
     // if (!uniqueMailId.includes(reciptant)) {
@@ -152,6 +188,7 @@ const sendEventMail = async (event) => {
         { _id: event["_id"] },
         {
             $set: {
+                mails_count: event["mails_count"] + 1,
                 last_notification_sent: new Date(todaysDate),
             }
         }
@@ -172,12 +209,9 @@ const getEventExceptTodays = async () => {
 }
 
 function arraysHaveExactMatch(arr1, arr2) {
-    // Check if the arrays have the same length
     if (arr1.length !== arr2.length) {
         return false;
     }
-
-    // Use the every() method to compare elements
     return arr1.every((element, index) => element === arr2[index]);
 }
 
@@ -192,19 +226,11 @@ function arraysHasAnyOf(arr1, arr2) {
     return false; // No matching elements found
 }
 
-function calculateDateDifference(dateString) {
-    // Convert the input date string to a Date object
+const calculateDateDifference = (dateString) => {
     const inputDate = new Date(dateString);
-
-    // Get the current date
     const currentDate = new Date();
-
-    // Calculate the time difference in milliseconds
     const timeDifference = inputDate - currentDate;
-
-    // Calculate the difference in days
     const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-
     return daysDifference;
 }
 

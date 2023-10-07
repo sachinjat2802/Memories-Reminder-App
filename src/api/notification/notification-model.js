@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const notification = new Schema({
     belongs_to: {
         type: String,
-        require4d: true,
+        required: true,
         ref: "user",
     },
     limit: {
