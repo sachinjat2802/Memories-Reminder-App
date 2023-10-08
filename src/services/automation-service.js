@@ -78,7 +78,10 @@ const sendNotification = async () => {
                                 }
 
                                 if (notifi["tag"]["filter_match"] == "Has any of") {
-                                    if (arraysHasAnyOf(notifi["tag"]["tags"], event["tags"])) {
+                                    const notificationTags = notifi["tags"];
+                                    console.log("mhghggh", notificationTags);
+                                    const conditionMet = arraysHasAnyOf(notificationTags, event["tags"]);
+                                    if (conditionMet) {
                                         if (event["mails_count"] <= notifi["limit"]) {
                                             await sendEventMail(event);
                                         }
@@ -163,8 +166,9 @@ const sendNotification = async () => {
                     }
 
                     if (notifi["tag"]["filter_match"] == "Has any of") {
-                        const conditionMet = arraysHasAnyOf(notifi["tag"]["tags"], event["tags"]);
-                        console.log("conditionMet: ", conditionMet);
+                        const notificationTags = notifi["tags"];
+                        const conditionMet = arraysHasAnyOf(notificationTags[0], event["tags"]);
+                        console.log("conditionMet 2 ", conditionMet);
                         if (conditionMet) {
                             await sendEventMail(event);
                         }
@@ -191,12 +195,12 @@ const sendIfNotSentToday = async (memory) => {
 }
 
 const sendEventMail = async (event) => {
-    console.log("===>",event);
+    console.log("===>", event);
     const reciptant = event["belongs_to"];
     const todaysDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${(date.getDate()).toString().padStart(2, "0")}`;
     // if (!uniqueMailId.includes(reciptant)) {
     await sendMail(reciptant, `Remainder of ${event["tittle"]}`, `This is to notify about "${event["tittle"]}". `);
-    
+
     var count = 1;
     if (event["mails_count"])
         count = event["mails_count"] + 1;
@@ -233,8 +237,10 @@ function arraysHaveExactMatch(arr1, arr2) {
 }
 
 function arraysHasAnyOf(arr1, arr2) {
+    // console.log("conditionMet: ", JSON.parse(arr1));
     for (const element1 of arr1) {
         for (const element2 of arr2) {
+            console.log(element1, element2);
             if (element1 == element2) {
                 return true; // Found a matching element
             }
