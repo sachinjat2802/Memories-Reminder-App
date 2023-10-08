@@ -8,10 +8,10 @@ const sendNotification = async () => {
     let uniqueMailId = [];
     const notTodaysEvent = await getEventExceptTodays();
     for (const event of notTodaysEvent) {
-        console.log(event["notification"].length);
         if (event["notification"].length > 0) {
             for (const notifi of event["notification"]) {
                 if (event["last_notification_sent"]) {
+                    console.log("knkjhbj", event, notifi);
                     const diff = calculateDateDifference(event["last_notification_sent"]);
                     const repeat = notifi["repeat"];
                     if (diff > (repeat - 1)) {
@@ -88,7 +88,7 @@ const sendNotification = async () => {
                         }
                     }
                     if (diff < repeat && notifi["limit"] > 0) {
-                        await Memory.findByOneAndUpdate(
+                        await Memory.findOneAndUpdate(
                             {
                                 _id: event["_id"],
                             },
@@ -149,7 +149,7 @@ const sendNotification = async () => {
 
             if (notifi["tag"]) {
                 if (notifi["tag"]["tags"] && notifi["tag"]["enabled"]) {
-                    console.log(notifi["tag"]["tags"], event["tags"]);
+                    console.log("==>", event["tags"]);
                     if (notifi["tag"]["filter_match"] == "Has all of") {
                         if (notifi["tag"]["tags"].every(item => event["tags"].includes(item))) {
                             await sendEventMail(event);
@@ -163,7 +163,9 @@ const sendNotification = async () => {
                     }
 
                     if (notifi["tag"]["filter_match"] == "Has any of") {
-                        if (arraysHasAnyOf(notifi["tag"]["tags"], event["tags"])) {
+                        const conditionMet = arraysHasAnyOf(notifi["tag"]["tags"], event["tags"]);
+                        console.log("conditionMet: ", conditionMet);
+                        if (conditionMet) {
                             await sendEventMail(event);
                         }
                     }
@@ -175,13 +177,12 @@ const sendNotification = async () => {
 
 const sendIfNotSentToday = async (memory) => {
     try {
-        console.log("===>", memory);
         if (!memory["last_notification_sent"]) {
             await sendEventMail(memory);
         } else {
             const diff = calculateDateDifference(memory["last_notification_sent"]);
             console.log(diff);
-            if (diff > 0)
+            if (diff > -1)
                 await sendEventMail(memory);
         }
     } catch (e) {
@@ -190,6 +191,7 @@ const sendIfNotSentToday = async (memory) => {
 }
 
 const sendEventMail = async (event) => {
+    console.log("===>",event);
     const reciptant = event["belongs_to"];
     const todaysDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${(date.getDate()).toString().padStart(2, "0")}`;
     // if (!uniqueMailId.includes(reciptant)) {
@@ -233,7 +235,7 @@ function arraysHaveExactMatch(arr1, arr2) {
 function arraysHasAnyOf(arr1, arr2) {
     for (const element1 of arr1) {
         for (const element2 of arr2) {
-            if (element1 === element2) {
+            if (element1 == element2) {
                 return true; // Found a matching element
             }
         }
