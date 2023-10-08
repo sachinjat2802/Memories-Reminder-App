@@ -25,7 +25,7 @@ app.use("/memory", memoryRoute);
 app.use("/notification", notificationRoute);
 
 
-cron.schedule('0 * * * *', async () => {
+cron.schedule('1 * * * * *', async () => {
     console.log('running every minute 1, 2, 4 and 5');
     await automate.sendNotification();
 });
