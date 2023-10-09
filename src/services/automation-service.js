@@ -9,19 +9,23 @@ const sendNotification = async () => {
     const notTodaysEvent = await getEventExceptTodays();
     for (const event of notTodaysEvent) {
         if (event["notification"].length > 0) {
+
             for (const notifi of event["notification"]) {
+
                 if (event["last_notification_sent"]) {
+
                     console.log("knkjhbj", event, notifi);
                     const diff = calculateDateDifference(event["last_notification_sent"]);
                     const repeat = notifi["repeat"];
-                    if (diff > (repeat - 1)) {
+                    console.log(event["mails_count"], notifi["limit"]);
+
+                    if (event["mails_count"] <= notifi["limit"]) {
+
                         if (notifi["tittle"]) {
                             if (notifi["tittle"]["tittles"]) {
                                 console.log(notifi["tittle"]["tittles"], event["tittle"]);
                                 if (notifi["tittle"]["tittles"].indexOf(event["tittle"]) > -1 && notifi["tittle"]["enabled"]) {
-                                    if (event["mails_count"] <= notifi["limit"]) {
-                                        await sendEventMail(event);
-                                    }
+                                    await sendEventMail(event);
                                 }
                             }
                         }
@@ -30,9 +34,7 @@ const sendNotification = async () => {
                             if (notifi["description"]["descriptions"]) {
                                 console.log(notifi["description"]["descriptions"], event["description"]);
                                 if (notifi["description"]["descriptions"].indexOf(event["description"]) > -1 && notifi["description"]["enabled"]) {
-                                    if (event["mails_count"] <= notifi["limit"]) {
-                                        await sendEventMail(event);
-                                    }
+                                    await sendEventMail(event);
                                 }
                             }
                         }
@@ -42,17 +44,13 @@ const sendNotification = async () => {
                                 if (notifi["image"]["status"] == "Has images") {
                                     if (event["image"] && event["image"].length > 0) {
                                         console.log("====>", notifi["image"], event["image"].length);
-                                        if (event["mails_count"] <= notifi["limit"]) {
-                                            await sendEventMail(event);
-                                        }
+                                        await sendEventMail(event);
                                     }
                                 }
                                 if (notifi["image"]["status"] == "Doesnt have images") {
                                     if (event["image"] && event["image"].length == 0) {
                                         console.log("jnjknkjnkjhjhj", notifi["image"], event);
-                                        if (event["mails_count"] <= notifi["limit"]) {
-                                            await sendEventMail(event);
-                                        }
+                                        await sendEventMail(event);
                                     }
                                 }
                             }
@@ -62,45 +60,45 @@ const sendNotification = async () => {
                             if (notifi["tag"]["tags"] && notifi["tag"]["enabled"]) {
                                 console.log(notifi["tag"]["tags"], event["tags"]);
                                 if (notifi["tag"]["filter_match"] == "Has all of") {
-                                    if (notifi["tag"]["tags"].every(item => event["tags"].includes(item))) {
-                                        if (event["mails_count"] <= notifi["limit"]) {
-                                            await sendEventMail(event);
-                                        }
+                                    if (notifi["tag"]["tags"][0].every(item => event["tags"].includes(item))) {
+                                        await sendEventMail(event);
                                     }
                                 }
 
                                 if (notifi["tag"]["filter_match"] == "Has exactly") {
-                                    if (arraysHaveExactMatch(notifi["tag"]["tags"], event["tags"])) {
-                                        if (event["mails_count"] <= notifi["limit"]) {
-                                            await sendEventMail(event);
-                                        }
+                                    const notificationTags = notifi["tags"];
+                                    console.log("mhghggh", notificationTags[0]);
+                                    const conditionMet = arraysHaveExactMatch(notificationTags[0], event["tags"]);
+                                    if (conditionMet) {
+                                        await sendEventMail(event);
                                     }
                                 }
 
                                 if (notifi["tag"]["filter_match"] == "Has any of") {
                                     const notificationTags = notifi["tags"];
-                                    console.log("mhghggh", notificationTags);
-                                    const conditionMet = arraysHasAnyOf(notificationTags, event["tags"]);
+                                    console.log("mhghggh", notificationTags[0]);
+                                    const conditionMet = arraysHasAnyOf(notificationTags[0], event["tags"]);
                                     if (conditionMet) {
-                                        if (event["mails_count"] <= notifi["limit"]) {
-                                            await sendEventMail(event);
-                                        }
+                                        await sendEventMail(event);
                                     }
                                 }
                             }
                         }
-                    }
-                    if (diff < repeat && notifi["limit"] > 0) {
-                        await Memory.findOneAndUpdate(
-                            {
-                                _id: event["_id"],
-                            },
-                            {
-                                $set: {
-                                    mails_count: 0,
+                    } else {
+                        // if (diff >= (repeat - 1)) {
+                        console.log("diff ", diff, "repeat ", repeat);
+                        if ((diff + 1) == repeat && notifi["limit"] > 0) {
+                            await Memory.findOneAndUpdate(
+                                {
+                                    _id: event["_id"],
+                                },
+                                {
+                                    $set: {
+                                        mails_count: 0,
+                                    }
                                 }
-                            }
-                        );
+                            );
+                        }
                     }
                 } else {
                     await sendEventMail(event);
@@ -154,17 +152,20 @@ const sendNotification = async () => {
                 if (notifi["tag"]["tags"] && notifi["tag"]["enabled"]) {
                     console.log("==>", event["tags"]);
                     if (notifi["tag"]["filter_match"] == "Has all of") {
-                        if (notifi["tag"]["tags"].every(item => event["tags"].includes(item))) {
+                        if (notifi["tag"]["tags"][0].every(item => event["tags"].includes(item))) {
                             await sendEventMail(event);
                         }
                     }
 
                     if (notifi["tag"]["filter_match"] == "Has exactly") {
-                        if (arraysHaveExactMatch(notifi["tag"]["tags"], event["tags"])) {
+                        const notificationTags = notifi["tags"];
+                        console.log("mhghggh", notificationTags[0]);
+                        const conditionMet = arraysHaveExactMatch(notificationTags[0], event["tags"]);
+                        if (conditionMet) {
                             await sendEventMail(event);
                         }
                     }
-
+                    
                     if (notifi["tag"]["filter_match"] == "Has any of") {
                         const notificationTags = notifi["tags"];
                         const conditionMet = arraysHasAnyOf(notificationTags[0], event["tags"]);
@@ -175,8 +176,8 @@ const sendNotification = async () => {
                     }
                 }
             }
-        }
-    };
+        };
+    }
 }
 
 const sendIfNotSentToday = async (memory) => {
@@ -205,6 +206,7 @@ const sendEventMail = async (event) => {
     if (event["mails_count"])
         count = event["mails_count"] + 1;
 
+    console.log("count ", count);
     await Memory.updateOne(
         { _id: event["_id"] },
         {

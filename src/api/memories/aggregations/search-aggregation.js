@@ -155,7 +155,7 @@ const getEventByDate = async (targetDay, targetMonth) => {
                     "notification.repeat": 1,
                     "notification.image": 1,
                     "notification.tag": 1,
-                    "notification.tags": '$notification.tag.tags',
+                    "notification.tags": '$notification.tag.tags', 
                     "notification.tittle": 1,
                     "notification.description": 1,
                     "notification.limit": 1,

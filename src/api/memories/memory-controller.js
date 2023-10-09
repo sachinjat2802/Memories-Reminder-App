@@ -325,8 +325,13 @@ const memoriesImagesConverter = async (memories) => {
 
 const getTags = (tags) => {
     let finalTags = [];
-    if (tags.length != 0)
-        finalTags = tags.split(",");
+    if (tags.length != 0) {
+        let splitted = tags.split(",");
+        for(let tag of splitted) {
+            console.log(tag);
+            finalTags.push(tag.trim());
+        }
+    }
     return finalTags;
 }
 
