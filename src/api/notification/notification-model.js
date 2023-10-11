@@ -42,7 +42,7 @@ const notification = new Schema({
         tags: [String],
         filter_match: {
             type: String,
-            enum: ["Has any of", "Has all of", "Has exactly"],
+            enum: ["Has any of", "Has all of", "Has exactly", "untagged"],
             default: "Has any of",
         },
         enabled: {
