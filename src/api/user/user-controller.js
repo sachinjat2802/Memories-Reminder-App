@@ -201,13 +201,6 @@ const completeProfile = async (req, res) => {
         const { email } = user;
         const { name, dob } = body;
 
-        if (!name)
-            return res.status(200).json({
-                message: "Enter the name.",
-                status: 0,
-                error: "Missing required field name."
-            });
-
         var profilePicture;
         if (files) {
             profilePicture = await fileToBuffer(files);
