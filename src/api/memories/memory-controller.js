@@ -7,9 +7,9 @@ const createMemory = async (req, res) => {
         const { files, body, user } = req;
         const { email } = user;
         const { tittle, description, tags = [], dateOfEvent } = body;
-        if (!description)
+        if (!tittle || !description)
             return res.status(400).json({
-                message: "Enter description",
+                message: "Tittle or Description is mandatory.",
                 status: 0,
             });
         if (!validationService.isValidEmail(email))
