@@ -13,7 +13,7 @@ const memory = new Schema({
     },
     description: {
         type: String,
-        required: true,
+        required: false,
     },
     tags: {
         type: [String],
