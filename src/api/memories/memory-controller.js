@@ -7,7 +7,7 @@ const createMemory = async (req, res) => {
         const { files, body, user } = req;
         const { email } = user;
         const { tittle, description, tags = [], dateOfEvent } = body;
-        if (!tittle || !description)
+        if (!tittle && !description)
             return res.status(400).json({
                 message: "Tittle or Description is mandatory.",
                 status: 0,
@@ -328,7 +328,6 @@ const getTags = (tags) => {
     if (tags.length != 0) {
         let splitted = tags.split(",");
         for(let tag of splitted) {
-            console.log(tag);
             finalTags.push(tag.trim());
         }
     }
