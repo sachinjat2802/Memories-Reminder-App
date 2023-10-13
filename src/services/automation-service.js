@@ -174,6 +174,13 @@ const sendNotification = async () => {
                             await sendEventMail(event);
                         }
                     }
+
+                    if (notifi["tag"]["filter_match"] == "Untagged") {
+                        const conditionMet = event["tags"].length == 0;
+                        if (conditionMet) {
+                            await sendEventMail(event);
+                        }
+                    }
                 }
             }
         };
