@@ -18,6 +18,10 @@ const user = new Schema({
         type: String,
         required: false
     },
+    otp_count: {
+        type: Number,
+        default: 0,
+    },
     dob: {
         type: Date,
         required: false

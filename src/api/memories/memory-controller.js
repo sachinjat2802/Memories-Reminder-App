@@ -46,9 +46,14 @@ const updateMemory = async (req, res) => {
         const { user, files, body } = req;
         const { email } = user;
         const { id, tittle, description, tags = [], dateOfEvent, imgToRemove } = body;
-        if (!id || !description)
+        if (!id)
             return res.status(400).json({
-                message: "Enter id, description",
+                message: "Enter id to update",
+                status: 0,
+            });
+        if (!tittle && !description)
+            return res.status(400).json({
+                message: "Tittle or Description is mandatory.",
                 status: 0,
             });
         if (!validationService.isValidEmail(email))
@@ -245,7 +250,7 @@ const deleteMemory = async (req, res) => {
         const { user, params } = req;
         const { email } = user;
         const { id } = params;
-        await Memory.deleteOne({ belongs_to: email, _id: id }); 
+        await Memory.deleteOne({ belongs_to: email, _id: id });
         return res.status(200).json({
             message: "Memory Deleted.",
             status: 1,
@@ -327,7 +332,7 @@ const getTags = (tags) => {
     let finalTags = [];
     if (tags.length != 0) {
         let splitted = tags.split(",");
-        for(let tag of splitted) {
+        for (let tag of splitted) {
             finalTags.push(tag.trim());
         }
     }

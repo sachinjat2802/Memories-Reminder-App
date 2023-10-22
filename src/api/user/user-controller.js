@@ -31,6 +31,20 @@ const signUpWithOTP = async (req, res) => {
             },
             { upsert: true }
         );
+        if (matchedCount != 0) {
+            var foundUser = await User.findOne({ email });
+            if (foundUser["is_loggedin"] == false)
+                if (foundUser["otp_count"])
+                    foundUser["otp_count"] = foundUser["otp_count"] + 1;
+                else
+                    foundUser["otp_count"] = 1;
+            if (foundUser["otp_count"] > 5)
+                return res.status(200).json({
+                    message: "Max OTP count exeeded...",
+                    status: 1,
+                });
+            foundUser.save();
+        }
         return res.status(200).json({
             message: "Sent Opt!",
             status: 1,
@@ -317,7 +331,7 @@ const getUserProfile = async (req, res) => {
         const { email } = req.user;
         const foundUser = await User.findOne({ email });
         var image;
-        if(foundUser["profilePicture"]["name"]) {
+        if (foundUser["profilePicture"]["name"]) {
             image = await dbImageToFileBuffer([foundUser["profilePicture"]]);
             image = image[0];
             console.log(image);
