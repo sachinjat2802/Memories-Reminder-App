@@ -123,6 +123,7 @@ const loginUserWithOTP = async (req, res) => {
             {
                 $set: {
                     otp: "",
+                    otp_count: 0,
                     is_loggedin: true,
                 }
             },
@@ -166,7 +167,7 @@ const loginUserWithPassword = async (req, res) => {
         const foundUser = await User.findOne({ email });
         if (!foundUser || !foundUser["password"]) {
             const encryptedPassword = await hash(password, 10);
-            await User.updateOne(
+            const { matchedCount } = await User.updateOne(
                 { email },
                 {
                     $setOnInsert: {
@@ -174,6 +175,7 @@ const loginUserWithPassword = async (req, res) => {
                     },
                     $set: {
                         password: encryptedPassword,
+                        otp_count: 0,
                         is_loggedin: false,
                     }
                 },
@@ -183,7 +185,7 @@ const loginUserWithPassword = async (req, res) => {
                 message: "Logged in...!",
                 status: 1,
                 jwt: authorizationService.generateJWToken(email),
-                isNewUser: true,
+                isNewUser: matchedCount == 0,
             });
         }
         const passwordMatched = await compare(password, foundUser["password"]);
@@ -193,6 +195,16 @@ const loginUserWithPassword = async (req, res) => {
                 status: 0,
                 error: "Username and password doesnot match."
             });
+        const { matchedCount } = await User.updateOne(
+            { email },
+            {
+                $set: {
+                    otp_count: 0,
+                    is_loggedin: false,
+                }
+            },
+            { upsert: true }
+        );
         return res.status(200).json({
             message: "Logged in...!",
             status: 1,
