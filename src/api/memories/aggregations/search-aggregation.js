@@ -204,11 +204,6 @@ const getRestOfEvents = async (targetDay, targetMonth) => {
                     as: 'notification',
                 },
             },
-            // {
-            //     $match: {
-            //         'notification.only_date_of_event': false,
-            //     },
-            // },
             {
                 $project: {
                     _id: 1,
@@ -227,6 +222,7 @@ const getRestOfEvents = async (targetDay, targetMonth) => {
                     "notification.tittle": 1,
                     "notification.description": 1,
                     "notification.limit": 1,
+                    "userData.device_tokens": 1,
                 }
             },
         ]);

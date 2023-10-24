@@ -1,6 +1,10 @@
 const Memory = require("../api/memories/memory-model");
 const { sendMail } = require("./email-service");
 const { sortingAggregations, searchAggregations } = require("../api/memories/aggregations");
+const fcm = require('./../config/firebase'); // Import the Firebase Admin SDK
+
+
+
 
 const date = new Date();
 
@@ -205,9 +209,28 @@ const sendIfNotSentToday = async (memory) => {
 const sendEventMail = async (event) => {
     console.log("===>", event);
     const reciptant = event["belongs_to"];
+
     const todaysDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${(date.getDate()).toString().padStart(2, "0")}`;
     // if (!uniqueMailId.includes(reciptant)) {
     await sendMail(reciptant, `Remainder of ${event["tittle"]}`, `This is to notify about "${event["tittle"]}". `);
+    if (event?.userData?.device_tokens.length > 0) { 
+        const payload = {
+            notification: {
+              title: `Remainder of ${event["tittle"]}`,
+              body: `This is to notify about "${event["tittle"]}"`,
+            },
+        };
+        
+       await fcm.messaging().sendToDevice(token, payload)
+        .then(response => {
+          console.log('Successfully sent message:', response);
+        })
+        .catch(error => {
+          console.error('Error sending message:', error);
+        });
+        
+    }
+
 
     var count = 1;
     if (event["mails_count"])

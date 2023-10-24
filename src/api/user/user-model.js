@@ -42,7 +42,11 @@ const user = new Schema({
     isDeleted: {
         type: Boolean,
         default: false
-    }
+    },
+    device_tokens: [{
+        type: String,
+        required: false,
+    }],
 }, {
     id: false,
     toObject: { virtuals: true, getters: true },
