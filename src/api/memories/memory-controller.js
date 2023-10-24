@@ -137,6 +137,7 @@ const getAllMemories = async (req, res) => {
             message: "Here are your memories...",
             status: 1,
             data,
+            count: data.length,
         });
     } catch (e) {
         console.log(e);
