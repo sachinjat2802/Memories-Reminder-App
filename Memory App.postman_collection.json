@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "b8c8e8c5-f4ba-450b-8ada-5c1f8d4acfb3",
+		"_postman_id": "324580c1-7f85-44dd-acaf-7de1358255f9",
 		"name": "Memory App",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "17195439"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "16468301",
+		"_collection_link": "https://www.postman.com/blue-astronaut-305326/workspace/gas-it-up-saas/collection/16468301-324580c1-7f85-44dd-acaf-7de1358255f9?action=share&source=collection_link&creator=16468301"
 	},
 	"item": [
 		{
@@ -23,18 +24,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/user/signup/otp",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"signup",
-								"otp"
-							]
-						}
+						"url": "localhost:3000/user/signup/otp"
 					},
 					"response": []
 				},
@@ -52,18 +42,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/user/login/otp",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"login",
-								"otp"
-							]
-						}
+						"url": "localhost:3000/user/login/otp"
 					},
 					"response": []
 				},
@@ -81,22 +60,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://139.59.95.44:3000/user/login/password",
-							"protocol": "http",
-							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"login",
-								"password"
-							]
-						}
+						"url": "http://139.59.95.44:3000/user/login/password"
 					},
 					"response": []
 				},
@@ -114,17 +78,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/user/oauth",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"oauth"
-							]
-						}
+						"url": "localhost:3000/user/oauth"
 					},
 					"response": []
 				}
@@ -164,22 +118,7 @@
 								}
 							]
 						},
-						"url": {
-							"raw": "http://139.59.95.44:3000/user/profile/complete",
-							"protocol": "http",
-							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"profile",
-								"complete"
-							]
-						}
+						"url": "http://139.59.95.44:3000/user/profile/complete"
 					},
 					"response": []
 				},
@@ -203,18 +142,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "localhost:3000/user/password/change",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"password",
-								"change"
-							]
-						}
+						"url": "localhost:3000/user/password/change"
 					},
 					"response": []
 				},
@@ -229,21 +157,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://139.59.95.44:3000/user/profile",
-							"protocol": "http",
-							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"profile"
-							]
-						}
+						"url": "http://139.59.95.44:3000/user/profile"
 					},
 					"response": []
 				},
@@ -258,17 +172,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "localhost:3000/user/profile",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"profile"
-							]
-						}
+						"url": "localhost:3000/user/profile"
 					},
 					"response": []
 				}
@@ -288,19 +192,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:3000/memory/search/h",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"memory",
-								"search",
-								"h"
-							]
-						}
+						"url": "http://localhost:3000/memory/search/h"
 					},
 					"response": []
 				},
@@ -358,18 +250,7 @@
 								}
 							]
 						},
-						"url": {
-							"raw": "http://localhost:3000/memory/create",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"memory",
-								"create"
-							]
-						}
+						"url": "http://localhost:3000/memory/create"
 					},
 					"response": []
 				},
@@ -385,7 +266,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://139.59.95.44:3000/memory",
+							"raw": "http://139.59.95.44:3000/memory?page=1&limit=2",
 							"protocol": "http",
 							"host": [
 								"139",
@@ -396,6 +277,16 @@
 							"port": "3000",
 							"path": [
 								"memory"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
 							]
 						}
 					},
@@ -412,18 +303,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:3000/memory/6516cd05a81eeefe5236a5f0",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"memory",
-								"6516cd05a81eeefe5236a5f0"
-							]
-						}
+						"url": "http://localhost:3000/memory/6516cd05a81eeefe5236a5f0"
 					},
 					"response": []
 				},
@@ -481,21 +361,7 @@
 								}
 							]
 						},
-						"url": {
-							"raw": "http://139.59.95.44:3000/memory/update",
-							"protocol": "http",
-							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
-							],
-							"port": "3000",
-							"path": [
-								"memory",
-								"update"
-							]
-						}
+						"url": "http://139.59.95.44:3000/memory/update"
 					},
 					"response": []
 				},
@@ -510,22 +376,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://139.59.95.44:3000/memory/tag/!0000",
-							"protocol": "http",
-							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
-							],
-							"port": "3000",
-							"path": [
-								"memory",
-								"tag",
-								"!0000"
-							]
-						}
+						"url": "http://139.59.95.44:3000/memory/tag/!0000"
 					},
 					"response": []
 				},
@@ -540,18 +391,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:3000/memory/651d7595c0b1eb87dbbbf186",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"memory",
-								"651d7595c0b1eb87dbbbf186"
-							]
-						}
+						"url": "http://localhost:3000/memory/651d7595c0b1eb87dbbbf186"
 					},
 					"response": []
 				}
@@ -583,16 +423,7 @@
 										}
 									}
 								},
-								"url": {
-									"raw": "localhost:3000/notification",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"notification"
-									]
-								}
+								"url": "localhost:3000/notification"
 							},
 							"response": []
 						},
@@ -601,17 +432,7 @@
 							"request": {
 								"method": "POST",
 								"header": [],
-								"url": {
-									"raw": "http://localhost:3000/notification",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"notification"
-									]
-								}
+								"url": "http://localhost:3000/notification"
 							},
 							"response": []
 						},
@@ -626,20 +447,7 @@
 										"type": "text"
 									}
 								],
-								"url": {
-									"raw": "http://139.59.95.44:3000/notification",
-									"protocol": "http",
-									"host": [
-										"139",
-										"59",
-										"95",
-										"44"
-									],
-									"port": "3000",
-									"path": [
-										"notification"
-									]
-								}
+								"url": "http://139.59.95.44:3000/notification"
 							},
 							"response": []
 						},
@@ -654,18 +462,7 @@
 										"type": "text"
 									}
 								],
-								"url": {
-									"raw": "http://localhost:3000/notification/651597e6c07377c78616ca91",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"notification",
-										"651597e6c07377c78616ca91"
-									]
-								}
+								"url": "http://localhost:3000/notification/651597e6c07377c78616ca91"
 							},
 							"response": []
 						},
@@ -680,18 +477,7 @@
 										"type": "text"
 									}
 								],
-								"url": {
-									"raw": "http://localhost:3000/notification/651597e6c07377c78616ca91",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"notification",
-										"651597e6c07377c78616ca91"
-									]
-								}
+								"url": "http://localhost:3000/notification/651597e6c07377c78616ca91"
 							},
 							"response": []
 						}
@@ -708,19 +494,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:3000/user/notification/toggle",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification",
-								"toggle"
-							]
-						}
+						"url": "http://localhost:3000/user/notification/toggle"
 					},
 					"response": []
 				},
@@ -744,19 +518,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/user/notification/tittle",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification",
-								"tittle"
-							]
-						}
+						"url": "http://localhost:3000/user/notification/tittle"
 					},
 					"response": []
 				},
@@ -780,19 +542,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/user/notification/image",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification",
-								"image"
-							]
-						}
+						"url": "http://localhost:3000/user/notification/image"
 					},
 					"response": []
 				},
@@ -816,19 +566,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:3000/user/notification/tag",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification",
-								"tag"
-							]
-						}
+						"url": "http://localhost:3000/user/notification/tag"
 					},
 					"response": []
 				},
@@ -843,19 +581,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:3000/user/notification/tittle",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification",
-								"tittle"
-							]
-						}
+						"url": "http://localhost:3000/user/notification/tittle"
 					},
 					"response": []
 				},
@@ -870,19 +596,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:3000/user/notification/image",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification",
-								"image"
-							]
-						}
+						"url": "http://localhost:3000/user/notification/image"
 					},
 					"response": []
 				},
@@ -897,19 +611,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://localhost:3000/user/notification/tag",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification",
-								"tag"
-							]
-						}
+						"url": "http://localhost:3000/user/notification/tag"
 					},
 					"response": []
 				},
@@ -924,21 +626,7 @@
 								"type": "text"
 							}
 						],
-						"url": {
-							"raw": "http://139.59.95.44:3000/user/notification",
-							"protocol": "http",
-							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification"
-							]
-						}
+						"url": "http://139.59.95.44:3000/user/notification"
 					},
 					"response": []
 				},
@@ -962,21 +650,7 @@
 								}
 							}
 						},
-						"url": {
-							"raw": "http://139.59.95.44:3000/user/notification",
-							"protocol": "http",
-							"host": [
-								"139",
-								"59",
-								"95",
-								"44"
-							],
-							"port": "3000",
-							"path": [
-								"user",
-								"notification"
-							]
-						}
+						"url": "http://139.59.95.44:3000/user/notification"
 					},
 					"response": []
 				}
