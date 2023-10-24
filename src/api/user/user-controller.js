@@ -39,7 +39,7 @@ const signUpWithOTP = async (req, res) => {
                 else
                     foundUser["otp_count"] = 1;
             if (foundUser["otp_count"] > 5)
-                return res.status(200).json({
+                return res.status(500).json({
                     message: "Max OTP count exeeded...",
                     status: 1,
                 });
