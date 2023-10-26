@@ -398,6 +398,38 @@ const deleteUserProfile = async (req, res) => {
     }
 }
 
+const updateToken =  async (req, res) => {
+    try {
+         const { email } = req.user;
+        const { deviceToken } = req.body;
+     const data=await User.updateOne(
+            { email },
+            {
+                $addToSet: {
+                    deviceTokens: deviceToken,
+                }
+            }
+        );
+        if (data.modifiedCount == 0) {
+            return res.status(403).json({
+                message: "Token already exists.",
+                status: 0,
+            });   
+        }
+        if(data.modifiedCount == 1){
+            return res.status(200).json({
+                message: "Token added successfully.",
+                status: 1,
+            });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Server Error' });
+    }
+}
+
+
+
 module.exports = {
     signUpWithOTP,
     signUpWithPassword,
@@ -411,4 +443,5 @@ module.exports = {
 
     changePassword,
     getJWT,
+    updateToken
 }

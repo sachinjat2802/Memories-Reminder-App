@@ -1,7 +1,7 @@
 const express = require('express');
 const { authorizationService } = require("../../services");
 const { getNotificationSettings, updateNotificationSettings, toggleSMS, addTittleFilter, addTagFilter, addImageFilter, deleteTittleFilter, deleteTagFilter, deleteImageFilter } = require("./notification-controller");
-const { signUpWithOTP, loginUserWithOTP, loginUserWithPassword, completeProfile, changePassword, getJWT, getUserProfile, deleteUserProfile } = require("./user-controller");
+const { signUpWithOTP, loginUserWithOTP, loginUserWithPassword, completeProfile, changePassword, getJWT, getUserProfile, deleteUserProfile,updateToken } = require("./user-controller");
 const router = express.Router();
 
 router.post("/signup/otp", signUpWithOTP);
@@ -14,7 +14,10 @@ router.post("/profile/complete", authorizationService.authenticateUser, complete
 router.delete("/profile", authorizationService.authenticateUser, deleteUserProfile);
 
 router.post("/password/change", authorizationService.authenticateUser, changePassword);
+
 router.post("/oauth", getJWT);
+
+router.patch("/updateToken",authorizationService.authenticateUser,updateToken)
 
 router.get("/notification", authorizationService.authenticateUser, getNotificationSettings);
 router.post("/notification", authorizationService.authenticateUser, updateNotificationSettings);

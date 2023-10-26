@@ -43,7 +43,7 @@ const user = new Schema({
         type: Boolean,
         default: false
     },
-    device_tokens: [{
+    deviceTokens: [{
         type: String,
         required: false,
     }],
