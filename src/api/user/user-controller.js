@@ -398,35 +398,42 @@ const deleteUserProfile = async (req, res) => {
     }
 }
 
-const updateToken =  async (req, res) => {
+const updateToken = async (req, res) => {
     try {
-         const { email } = req.user;
+        const { email } = req.user;
         const { deviceToken } = req.body;
-     const data=await User.updateOne(
-            { email },
-            {
-                $addToSet: {
-                    deviceTokens: deviceToken,
-                }
-            }
-        );
-        if (data.modifiedCount == 0) {
-            return res.status(403).json({
-                message: "Token already exists.",
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found.",
                 status: 0,
-            });   
-        }
-        if(data.modifiedCount == 1){
-            return res.status(200).json({
-                message: "Token added successfully.",
-                status: 1,
             });
         }
+
+        const deviceTokens = user.deviceTokens || [];
+
+        if (deviceTokens.includes(deviceToken)) {
+            // Token already exists, remove it
+            user.deviceTokens = deviceTokens.filter(token => token !== deviceToken);
+        } else {
+            // Token doesn't exist, add it
+            user.deviceTokens.push(deviceToken);
+        }
+
+        await user.save();
+
+        return res.status(200).json({
+            message: "Token updated successfully.",
+            status: 1,
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server Error' });
     }
 }
+
 
 
 

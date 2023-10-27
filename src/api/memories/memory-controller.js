@@ -123,7 +123,6 @@ const updateMemory = async (req, res) => {
 const getAllMemories = async (req, res) => {
     try {
           const { email } = req.user;
-        console.log(req.query);
         const { page = 1, limit = 10 } = req.query;
         const skip = (page - 1) * limit;
         const memories = await Memory.find({
@@ -132,12 +131,13 @@ const getAllMemories = async (req, res) => {
         .skip(skip)
         .limit(parseInt(limit));
         const data = await memoriesImagesConverter(memories);
+        const count = await Memory.countDocuments({ belongs_to: email });
         console.log(JSON.stringify(data));
         return res.status(200).json({
             message: "Here are your memories...",
             status: 1,
             data,
-            count: data.length,
+            count,
         });
     } catch (e) {
         console.log(e);
