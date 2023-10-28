@@ -61,7 +61,10 @@ const updateMemory = async (req, res) => {
                 message: "Enter an valid email address...",
                 status: 0,
             });
-        const images = await fileToBuffer(files);
+            const images = [];
+        if (files) {
+            images = await fileToBuffer(files);
+        }
         const finalTags = getTags(tags);
         const { matchedCount } = await Memory.updateOne(
             {
