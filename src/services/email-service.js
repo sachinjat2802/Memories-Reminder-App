@@ -1,4 +1,15 @@
 const { createTransport } = require("nodemailer");
+const AWS = require('aws-sdk');
+
+AWS.config.update({
+    accessKeyId: 'AKIA2Y7GDWJQGW77WIUP', // Replace with your AWS access key
+    secretAccessKey: '6QhB7d6bIYsrzU6d7Svt4ptfDHwrCtJpyj5EVzZT', // Replace with your AWS secret access key
+    region: 'us-east-1' // Replace with your AWS region
+});
+  
+const ses = new AWS.SES({ apiVersion: '2010-12-01' });
+
+
 const { MAILID, MAIL_USER, MAIL_PASSWORD } = require("../config/index");
 
 
@@ -19,13 +30,39 @@ const generateOTP = () => {
 
 const sendMail = async (to, subject, body) => {
     try {
-        const mailBody = {
-            from: MAILID,
-            to,
-            subject,
-            text: body,
+        // const mailBody = {
+        //     from: MAILID,
+        //     to,
+        //     subject,
+        //     text: body,
+        // };
+       
+        // await transporter.sendMail(mailBody)
+        // Email parameters
+const params = {
+    Destination: {
+      ToAddresses: [to] // Replace with the recipient's email address
+    },
+    Message: {
+      Body: {
+        Text: {
+          Data: body // Replace with the email body
+        }
+      },
+      Subject: {
+        Data: subject // Replace with the email subject
+      }
+    },
+    Source: 'notificaitions@revisitro.com' // Replace with your email address
         };
-        await transporter.sendMail(mailBody)
+        ses.sendEmail(params, (err, data) => {
+  if (err) {
+    console.error('Error sending email:', err);
+  } else {
+    console.log('Email sent successfully:', data.MessageId);
+  }
+});
+        
     } catch (e) {
         console.log(e);
     }
@@ -40,12 +77,39 @@ const sendOTP = async (to) => {
             subject: "Your OTP",
             text: `Your OTP to login Memory App is: ${otp}`,
         };
-        await transporter.sendMail(mailBody);
+        const params = {
+            Destination: {
+              ToAddresses: [mailBody.to] // Replace with the recipient's email address
+            },
+            Message: {
+              Body: {
+                Text: {
+                  Data: mailBody.text // Replace with the email body
+                }
+              },
+              Subject: {
+                Data: mailBody.subject// Replace with the email subject
+              }
+            },
+            Source: 'notificaitions@revisitro.com' // Replace with your email address
+                };
+          ses.sendEmail(params, (err, data) => {
+            if (err) {
+                console.error('Error sending email:', err);
+            } else {
+                console.log('Email sent successfully:', data.MessageId);
+            }
+        });
+        // await transporter.sendMail(mailBody);
     } catch (e) {
         console.log(e);
     }
     return otp;
 };
+
+
+
+
 
 module.exports = {
     sendMail,

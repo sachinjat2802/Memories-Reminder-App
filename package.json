@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Navin3d/Memories-Reminder-App#readme",
   "dependencies": {
+    "aws-sdk": "^2.1483.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
