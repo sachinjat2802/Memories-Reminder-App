@@ -323,7 +323,7 @@ const dbImageToFileBuffer = async (dbImages) => {
 const memoriesImagesConverter = async (memories) => {
     var returnMemories = [];
     if (memories) {
-        for (let memory of memories) {
+        for (let memory of memories.reverse()) {
             const images = await dbImageToFileBuffer(memory["image"]);
             returnMemories.push({
                 _id: memory["_id"],

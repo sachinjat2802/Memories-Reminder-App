@@ -402,6 +402,12 @@ const updateToken = async (req, res) => {
     try {
         const { email } = req.user;
         const { deviceToken } = req.body;
+        if (!deviceToken) {
+            return res.status(400).json({
+                message: "Device token is required.",
+                status: 0,
+            });
+        }
 
         const user = await User.findOne({ email });
 

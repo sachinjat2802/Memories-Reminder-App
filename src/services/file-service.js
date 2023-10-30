@@ -7,7 +7,7 @@ const readFileToBuffer = async (filePath) => {
     try {
         // const buffer = await fs.readFile(filePath);
 
-        return `${HOST}:${PORT}/${filePath}`;
+        return `https://revisitro.com/api/${filePath}`;
     } catch (error) {
         throw error;
     }
