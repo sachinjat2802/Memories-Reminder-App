@@ -61,7 +61,7 @@ const updateMemory = async (req, res) => {
                 message: "Enter an valid email address...",
                 status: 0,
             });
-            const images = [];
+            let images = [];
         if (files) {
             images = await fileToBuffer(files);
         }

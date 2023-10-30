@@ -1,3 +1,13 @@
 {
-  //sorry it was a bit private data of other project
+  "type": "service_account",
+  "project_id": "revisitro",
+  "private_key_id": "e52254fb82a59041345149a3cea5612ffb13760f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC0mskqf1ccQXGW\nk/HTtUTQ5Tr0a7zycJwwMEkvQ4SntiLLZ8ewJe9BCf1eddUSorePSUiS4dfmIPHp\nnKaVK+gdMb0Tlfv1FpuvWvVw38pZW55LFpTR5unO0gwB9FxB8uqCq91md2hw8FMY\nfZ3dMXKYR+ZJLb4nX2r8Iuorp2BMouFVPyZLohNKRH0qBr86xZBQS+xy8CEMIdcV\nO4Z1pNn5WdzVWSFZbkrB+DZwO09Q49xZLLWEcOTQNPiykgG2qBGJmEmQK+DQflr1\njUNAZhrMT5EbvKZb4Vkj82mVAcykKoBQcwWzcexU1e8okM7EcMYIoROHAciAy1rt\nAFk+9nOvAgMBAAECggEATEYqu1X4ViiVbkChGwYtQAPvuBZgQAurCvb5kYp0Vdgo\nLbtwrEX5G4C6jtA44pvx5gPPMKlM4xX61OyhtdJLPzkoX0Mym7mmmpJRohABh2eY\nHKI2y8c3627uP00SQY/z1qf64zF+3GPC1E8JAsfFW+bRrQoyirJTnpSoTTNtCi/y\nUw1BWJ3XeMFX9xH0yAO6xpMxpPbg+Y6Vi7Vz8jxDxpwixX353vDwWhjzlKuN5Wqa\n0TOgU8Tee4226+91KHTDhNuC1gvP9Ha2bQ9zkwNt5JGyYJ24MFI3pKlr5nmapgR9\nUMgj8q2RYStaqtZtBLymOoZMP71bYUkeWJ9RjjkLIQKBgQDZ4hVdVyMeN8f3zrpf\nMlD34Xq7NDd7u7QAFr02jWe2RM6RVoGCttw79BbiPZqsJoWD5CYuXLC/iZNuSgio\nEOVQbFujN7YiyjLiMjjlsMJyODm8eOuKydz171EDNRG3iewPd2O36IM2pIAgzvZx\nGdZtXql3FQxWa2lo1KI5ky2JKQKBgQDUMy5U+JK2fIfMXku6o4E0PhLzyqz5SwgW\nkhCVIZm+Gouddy1PdAVdfK2vKHrW/TpKNxHyIyueh4DUvQPyoWVWYbVpFTGOl46T\na966XQ4lS4UI1fIVPlhL+18wmcl7+dL4k+Ys0ia9sRr2ySzuLxxAgzoDbPfEHkHa\nsnG/uU05FwKBgBsD+14tdb9Db1n8mgM/u+ZgYNVhbhe7eGAicaeX9OoWsf43WauZ\nfMk6RLQcq1b5F8j4uvs4pvm41zzvlQ8xuR01sk8Uk1LQ+2osi/1+4z1CV3ZVD++P\nhARCfisFo4K8aTapuQWOoOZfkzt+LfRsHbhF6oFHbNYyT0meQ9cbtqOxAoGAehi8\n5v1kBYZf6NK1Bj4AINw6sXYD0yk+DSacTgLYYI8LmF4zfw0F7UXI9gj3rW5lNMC9\nHbLo7T2QflgHxnrhQTPVWxJrwl0oF2Ew9dCHTCRI9s2Ljneh/I41tlQ2n5QetRL8\nlPuSeQFHv4n/xUjsG56mKcRwR7MVN04Hr0ZizZ8CgYA6SjTvw7LUlQtPE8ZJgxZx\n8sjvvc90PW3Du7yPaIPujfttF/Ziire+7PPz/9jSIm+fTRrQA5sSTr6V2nzaXXlG\n/ssUCfvr1UnAgZs/XJIJb18psho/c6/8dah/8acOkNrPZj77bTp4ICj7b0W2St11\nUps3MkeWs50+fP+U3WUOgw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-f0wkw@revisitro.iam.gserviceaccount.com",
+  "client_id": "109325307345185856685",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-f0wkw%40revisitro.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
 }
