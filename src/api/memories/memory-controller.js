@@ -131,6 +131,7 @@ const getAllMemories = async (req, res) => {
         const memories = await Memory.find({
             belongs_to: email,
         })
+        .sort({ createdAt: -1 })
         .skip(skip)
         .limit(parseInt(limit));
         const data = await memoriesImagesConverter(memories);
@@ -323,7 +324,7 @@ const dbImageToFileBuffer = async (dbImages) => {
 const memoriesImagesConverter = async (memories) => {
     var returnMemories = [];
     if (memories) {
-        for (let memory of memories.reverse()) {
+        for (let memory of memories) {
             const images = await dbImageToFileBuffer(memory["image"]);
             returnMemories.push({
                 _id: memory["_id"],
@@ -333,6 +334,7 @@ const memoriesImagesConverter = async (memories) => {
                 tags: memory["tags"],
                 event_date: memory["event_date"],
                 image: images,
+                createdAt: memory["createdAt"],
             });
         }
     }
