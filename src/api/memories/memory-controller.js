@@ -334,7 +334,6 @@ const memoriesImagesConverter = async (memories) => {
                 tags: memory["tags"],
                 event_date: memory["event_date"],
                 image: images,
-                createdAt: memory["createdAt"],
             });
         }
     }

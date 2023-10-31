@@ -1,13 +1,26 @@
-const fs = require('fs/promises');
-const filesys = require("fs");
-const path = require('path');
-const { PORT, HOST } = require('../config');
+const AWS = require('aws-sdk');
+
+const s3 = new AWS.S3({
+    accessKeyId: 'AKIA2Y7GDWJQHYRAZGMY',
+    secretAccessKey: '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',
+    region: 'ap-south-1'
+});
 
 const readFileToBuffer = async (filePath) => {
     try {
-        // const buffer = await fs.readFile(filePath);
-
-        return `https://revisitro.com/api/${filePath}`;
+        const params = {
+            Bucket: 'revisitro',
+            Key: filePath,
+          };
+        
+          try {
+              const signedUrl = await s3.getSignedUrlPromise('getObject', params);
+              console.log('Signed URL: ', signedUrl);
+            return signedUrl;
+          } catch (error) {
+            console.error('Error generating signed URL:', error);
+            throw error;
+          }
     } catch (error) {
         throw error;
     }
@@ -15,25 +28,28 @@ const readFileToBuffer = async (filePath) => {
 
 const saveBufferToDisk = async (buffer, defaultFileName) => {
     try {
-        // Generate a unique file name (e.g., using a timestamp and random number)
-        const fileName = `${Date.now()}_${Math.floor(Math.random() * 10000)}_${defaultFileName}`;
-
-        // Define the file path where you want to save the file
-        const filePath = path.join(__dirname, '../../files', fileName);
-
-        // Write the buffer to the file
-        await fs.writeFile(filePath, buffer);
-
-        return fileName;
+        const fileName = `production/${Date.now()}_${Math.floor(Math.random() * 10000)}_${defaultFileName}`;
+        const params = {
+            Bucket: 'revisitro',
+            Key: fileName,
+            Body: buffer
+        };
+        const data = await s3.upload(params).promise();
+        console.log(data,"/////////////////////////////////");
+        return data.Key;
     } catch (error) {
         console.log(error);
         throw error;
     }
 }
 
-const deleteAFileFromPath = (filePath) => {
+const deleteAFileFromPath = async (filePath) => {
     try {
-        filesys.rmSync(filePath);
+        const params = {
+            Bucket: 'revisitro',
+            Key: filePath
+        };
+        await s3.deleteObject(params).promise();
     } catch (e) {
         console.log(e);
     }
