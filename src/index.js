@@ -25,7 +25,7 @@ app.use("/user", userRoute);
 app.use("/memory", memoryRoute);
 app.use("/notification", notificationRoute);
 
-cron.schedule("* * * * *", async () => {
+cron.schedule("0 0 * * *", async () => {
   console.log("running a task every minute");
   const memories = await Memory.aggregate([
     {
