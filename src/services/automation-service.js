@@ -1,8 +1,157 @@
 const Memory = require("../api/memories/memory-model");
 const { sendMail } = require("./email-service");
 const { sortingAggregations, searchAggregations } = require("../api/memories/aggregations");
+const UserModel = require("../api/user/user-model")
+const NotificationModel = require("../api/notification/notification-model")
+const MemoryModel = require("../api/memories/memory-model")
 
 const date = new Date();
+
+const sendNotificationToUser = async () => {
+    let userCount = await UserModel.find({}).count();
+
+    let skip = 0;
+    const limit =10
+
+    for(let i=0;i<userCount;i+=limit){
+        let userList = UserModel.find({}).skip(i).limit(limit);
+        for(let j=0; j<userList.length;j++){
+            let user = userList[j];
+            let notificationsRules = await NotificationModel.find({belongs_to: user._id});
+            let memories=[];
+            let limit =0;
+            for(let k=0;k<notificationsRules.length;k++){
+                let notificationRule =  notificationsRules[k];
+                limit += notificationRule.limit;
+                const currentDate = new Date();
+                let startDate = new Date(currentDate);
+                startDate.setDate(currentDate.getDate() - notificationRule.repeat)
+                startDate.setHours(0,0,0,0);
+                let endDate = new Date(currentDate);
+                endDate.setHours(23,59,59,999);
+                let memorieList = await MemoryModel.find({
+                    event_date: {
+                        $lte: endDate
+                    },
+                    event_date: {
+                        $gte: startDate
+                    },
+                    belongs_to: user.email
+                })
+                for(let l=0;l<memorieList.length;l++){
+                    if(notificationRule?.tag?.filter_match == "Has any of"){
+                        if(hasAnyOfTag(memorieList[l].tags,notificationRule.tag.tags)){
+                            memories.push(memorieList[l]);
+                        }
+
+                    }else if(notificationRule?.tag?.filter_match == "Has all of"){
+                        if(hasAllOfTag(memorieList[l].tags,notificationRule.tag.tags)){
+                            memories.push(memorieList[l]);
+                        }
+    
+                    }else if(notificationRule?.tag?.filter_match == "Has exactly"){
+                        if(hasExactTag(memorieList[l].tags,notificationRule.tag.tags)){
+                            memories.push(memorieList[l]);
+                        }
+                    }else if(notificationRule?.tag?.filter_match == "Untagged"){
+                        if(memorieList[l].tags.length == 0){
+                            memories.push(memorieList[l]);
+                        }
+                    }
+                }
+
+            }
+
+            if(user.enabled_notification){
+                const currentDate = new Date();
+                let startDate = new Date(currentDate);
+                startDate.setDate(currentDate.getDate() - 30)
+                startDate.setHours(0,0,0,0);
+                let endDate = new Date(currentDate);
+                endDate.setHours(23,59,59,999);
+                let memorieList = await MemoryModel.find({
+                    event_date: {
+                        $lte: endDate
+                    },
+                    event_date: {
+                        $gte: startDate
+                    },
+                    belongs_to: user.email
+                })
+                memories = [...memories, ...memorieList];
+            }
+
+            if(limit !=0){
+                memories.slice(0, limit);
+            }
+
+            sendNotificationWithDelay(memories, user);
+            
+        }
+    }
+}
+
+const hasExactTag = async (memoryTag, notificationTag) => {
+    if(memoryTag.length != notificationTag.length){
+        return false;
+    }
+    memoryTag.sort();
+    notificationTag.sort();
+    for(let i=0;i<memoryTag.length;i++){
+        if(memoryTag[i]!=notificationTag[i]){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+const hasAllOfTag = async (memoryTag, notificationTag) => {
+    if(memoryTag.length < notificationTag.length){
+        return false;
+    }
+    for(let i=0;i<notificationTag.length;i++){
+        if(!memoryTag.includes(notificationTag[i])){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+const hasAnyOfTag = async (memoryTag, notificationTag) => {
+    if(memoryTag.length == 0){
+        return false;
+    }
+    for(let i=0;i<notificationTag.length;i++){
+        if(memoryTag.includes(notificationTag[i])){
+            return true;
+        }
+    }
+
+    return false;
+}
+
+const sendNotificationWithDelay = async (memories, user) => {
+    for(let i=0;i<memories.length;i++){
+        const reciptant = user["belongs_to"];
+        const todaysDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${(date.getDate()).toString().padStart(2, "0")}`;
+        await sendMail(reciptant, `Remainder of ${memories[i]["tittle"]}`, `This is to notify about "${memories[i]["tittle"]}". `);
+
+        var count = 1;
+        if (memories[i]["mails_count"])
+            count = memories[i]["mails_count"] + 1;
+        await Memory.updateOne(
+            { _id: memories[i]["_id"] },
+            {
+                $set: {
+                    mails_count: count,
+                    last_notification_sent: new Date(todaysDate),
+                }
+            }
+        );
+    }
+}
 
 const sendNotification = async () => {
     let uniqueMailId = [];
@@ -270,4 +419,5 @@ module.exports = {
     getTodaysEvent,
     getEventExceptTodays,
     sendNotification,
+    sendNotificationToUser
 }
