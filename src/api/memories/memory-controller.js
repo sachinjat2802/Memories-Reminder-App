@@ -251,7 +251,7 @@ const deleteMemory = async (req, res) => {
         const { email } = user;
         const { id } = params;
 
-        let memory = await Memory.find({ belongs_to: email, _id: id });
+        let memory = await Memory.findOne({ belongs_to: email, _id: id });
         if (memory["image"].length > 0) {
             for(let i=0;i<memory["image"].length;i++) {
                 let image = memory["image"][i];
