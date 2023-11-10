@@ -17,7 +17,7 @@ const sendNotificationToUser = async () => {
         let userList = UserModel.find({}).skip(i).limit(limit);
         for(let j=0; j<userList.length;j++){
             let user = userList[j];
-            let notificationsRules = await NotificationModel.find({belongs_to: user._id});
+            let notificationsRules = await NotificationModel.find({belongs_to: user.email});
             let memories=[];
             let limit =0;
             for(let k=0;k<notificationsRules.length;k++){
