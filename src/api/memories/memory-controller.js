@@ -250,6 +250,19 @@ const deleteMemory = async (req, res) => {
         const { user, params } = req;
         const { email } = user;
         const { id } = params;
+
+        let memory = await Memory.findOne({ belongs_to: email, _id: id });
+        if (memory["image"].length > 0) {
+            for(let i=0;i<memory["image"].length;i++) {
+                let image = memory["image"][i];
+                try {
+                    fileService.deleteAFileFromPath(image["path"]);
+                } catch (e) {
+                    console.log(e);
+                }
+            }
+        }
+
         await Memory.deleteOne({ belongs_to: email, _id: id });
         return res.status(200).json({
             message: "Memory Deleted.",
